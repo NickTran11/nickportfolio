@@ -166,7 +166,7 @@ code {
 
 .screen-section {
   position: relative;
-  min-height: 100vh;
+  min-height: 100svh;
   z-index: 2;
   display: flex;
   align-items: center;
