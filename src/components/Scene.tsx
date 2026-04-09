@@ -67,7 +67,7 @@ function Football({ position, emphasis = 0 }: { position: [number, number, numbe
 
       {/* 12 regular black pentagons */}
       {patchPoints.map((n, i) => {
-        const pos = n.clone().multiplyScalar(0.822);
+        const pos = n.clone().multiplyScalar(0.825);
         const quat = new THREE.Quaternion().setFromUnitVectors(
           new THREE.Vector3(0, 0, 1),
           n
@@ -80,7 +80,7 @@ function Football({ position, emphasis = 0 }: { position: [number, number, numbe
             position={[pos.x, pos.y, pos.z]}
             rotation={[euler.x, euler.y, euler.z]}
           >
-            <circleGeometry args={[0.12, 5]} />
+            <circleGeometry args={[0.2, 5]} />
             <meshStandardMaterial color="#0b0d10" roughness={0.95} metalness={0.02} />
           </mesh>
         );
