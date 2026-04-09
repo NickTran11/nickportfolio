@@ -521,6 +521,15 @@ code {
   font-size: 1.35rem;
 }
 
+.project-card p,
+.about-copy p,
+.highlight-card p,
+.resume-copy p,
+.contact-copy p {
+  font-size: 0.96rem;
+  line-height: 1.6;
+}
+
 .project-links {
   display: flex;
   align-items: center;
