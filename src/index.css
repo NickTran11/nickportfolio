@@ -397,84 +397,88 @@ code {
   pointer-events: none;
 }
 
-.hero-photo-only::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 30px;
-  pointer-events: none;
-  z-index: 2;
-  opacity: 0.9;
-
-  background:
-    /* LEFT pixel fade */
-    linear-gradient(to right, rgba(2, 8, 5, 0.85), transparent) left / 18% 100% no-repeat,
-    repeating-linear-gradient(
-      to bottom,
-      rgba(2, 8, 5, 0.95) 0 10px,
-      rgba(2, 8, 5, 0) 10px 20px
-    ) left / 18% 100% no-repeat,
-
-    /* RIGHT pixel fade */
-    linear-gradient(to left, rgba(2, 8, 5, 0.85), transparent) right / 18% 100% no-repeat,
-    repeating-linear-gradient(
-      to bottom,
-      rgba(2, 8, 5, 0.95) 0 10px,
-      rgba(2, 8, 5, 0) 10px 20px
-    ) right / 18% 100% no-repeat,
-
-    /* TOP */
-    linear-gradient(to bottom, rgba(2, 8, 5, 0.8), transparent) top / 100% 15% no-repeat,
-    repeating-linear-gradient(
-      to right,
-      rgba(2, 8, 5, 0.9) 0 10px,
-      rgba(2, 8, 5, 0) 10px 20px
-    ) top / 100% 15% no-repeat,
-
-    /* BOTTOM */
-    linear-gradient(to top, rgba(2, 8, 5, 0.75), transparent) bottom / 100% 14% no-repeat,
-    repeating-linear-gradient(
-      to right,
-      rgba(2, 8, 5, 0.85) 0 10px,
-      rgba(2, 8, 5, 0) 10px 20px
-    ) bottom / 100% 14% no-repeat;
-}
-
 .hero-photo-only img {
   position: relative;
   z-index: 1;
   filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.18));
 }
 
-.hero-photo-only .pixel-fade-overlay {
+.pixel-edge {
   position: absolute;
-  inset: 0;
-  z-index: 3;
   pointer-events: none;
-  border-radius: 30px;
-  opacity: 0.75;
+  z-index: 3;
+  opacity: 0.92;
+}
+
+.pixel-edge-top,
+.pixel-edge-bottom {
+  left: 0;
+  width: 100%;
+  height: 18%;
+}
+
+.pixel-edge-left,
+.pixel-edge-right {
+  top: 0;
+  height: 100%;
+  width: 16%;
+}
+
+.pixel-edge-top {
+  top: 0;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
   background:
-    /* left random blocks */
-    linear-gradient(rgba(2, 8, 5, 0.95), rgba(2, 8, 5, 0.95)) 4% 18% / 26px 26px no-repeat,
-    linear-gradient(rgba(2, 8, 5, 0.95), rgba(2, 8, 5, 0.95)) 9% 30% / 18px 18px no-repeat,
-    linear-gradient(rgba(2, 8, 5, 0.95), rgba(2, 8, 5, 0.95)) 6% 48% / 22px 22px no-repeat,
-    linear-gradient(rgba(2, 8, 5, 0.95), rgba(2, 8, 5, 0.95)) 11% 64% / 14px 14px no-repeat,
+    linear-gradient(rgba(2, 8, 5, 0.96), rgba(2, 8, 5, 0.96)) 3% 12% / 18px 18px no-repeat,
+    linear-gradient(rgba(2, 8, 5, 0.96), rgba(2, 8, 5, 0.96)) 10% 22% / 14px 14px no-repeat,
+    linear-gradient(rgba(2, 8, 5, 0.96), rgba(2, 8, 5, 0.96)) 18% 8% / 22px 22px no-repeat,
+    linear-gradient(rgba(2, 8, 5, 0.96), rgba(2, 8, 5, 0.96)) 28% 18% / 16px 16px no-repeat,
+    linear-gradient(rgba(2, 8, 5, 0.96), rgba(2, 8, 5, 0.96)) 76% 10% / 20px 20px no-repeat,
+    linear-gradient(rgba(2, 8, 5, 0.96), rgba(2, 8, 5, 0.96)) 86% 20% / 14px 14px no-repeat,
+    linear-gradient(rgba(2, 8, 5, 0.96), rgba(2, 8, 5, 0.96)) 93% 8% / 18px 18px no-repeat,
+    linear-gradient(to bottom, rgba(2, 8, 5, 0.96), rgba(2, 8, 5, 0)) top / 100% 100% no-repeat;
+}
 
-    /* right random blocks */
-    linear-gradient(rgba(2, 8, 5, 0.95), rgba(2, 8, 5, 0.95)) 96% 16% / 24px 24px no-repeat,
-    linear-gradient(rgba(2, 8, 5, 0.95), rgba(2, 8, 5, 0.95)) 91% 34% / 18px 18px no-repeat,
-    linear-gradient(rgba(2, 8, 5, 0.95), rgba(2, 8, 5, 0.95)) 94% 52% / 20px 20px no-repeat,
-    linear-gradient(rgba(2, 8, 5, 0.95), rgba(2, 8, 5, 0.95)) 89% 72% / 14px 14px no-repeat,
+.pixel-edge-bottom {
+  bottom: 0;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  background:
+    linear-gradient(rgba(2, 8, 5, 0.94), rgba(2, 8, 5, 0.94)) 6% 86% / 18px 18px no-repeat,
+    linear-gradient(rgba(2, 8, 5, 0.94), rgba(2, 8, 5, 0.94)) 14% 74% / 14px 14px no-repeat,
+    linear-gradient(rgba(2, 8, 5, 0.94), rgba(2, 8, 5, 0.94)) 24% 88% / 22px 22px no-repeat,
+    linear-gradient(rgba(2, 8, 5, 0.94), rgba(2, 8, 5, 0.94)) 72% 84% / 20px 20px no-repeat,
+    linear-gradient(rgba(2, 8, 5, 0.94), rgba(2, 8, 5, 0.94)) 84% 76% / 14px 14px no-repeat,
+    linear-gradient(rgba(2, 8, 5, 0.94), rgba(2, 8, 5, 0.94)) 94% 88% / 18px 18px no-repeat,
+    linear-gradient(to top, rgba(2, 8, 5, 0.94), rgba(2, 8, 5, 0)) bottom / 100% 100% no-repeat;
+}
 
-    /* top random blocks */
-    linear-gradient(rgba(2, 8, 5, 0.92), rgba(2, 8, 5, 0.92)) 24% 5% / 18px 18px no-repeat,
-    linear-gradient(rgba(2, 8, 5, 0.92), rgba(2, 8, 5, 0.92)) 42% 7% / 14px 14px no-repeat,
-    linear-gradient(rgba(2, 8, 5, 0.92), rgba(2, 8, 5, 0.92)) 70% 6% / 22px 22px no-repeat,
+.pixel-edge-left {
+  left: 0;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  background:
+    linear-gradient(rgba(2, 8, 5, 0.96), rgba(2, 8, 5, 0.96)) 14% 10% / 18px 18px no-repeat,
+    linear-gradient(rgba(2, 8, 5, 0.96), rgba(2, 8, 5, 0.96)) 22% 22% / 14px 14px no-repeat,
+    linear-gradient(rgba(2, 8, 5, 0.96), rgba(2, 8, 5, 0.96)) 10% 40% / 22px 22px no-repeat,
+    linear-gradient(rgba(2, 8, 5, 0.96), rgba(2, 8, 5, 0.96)) 24% 58% / 16px 16px no-repeat,
+    linear-gradient(rgba(2, 8, 5, 0.96), rgba(2, 8, 5, 0.96)) 12% 74% / 20px 20px no-repeat,
+    linear-gradient(rgba(2, 8, 5, 0.96), rgba(2, 8, 5, 0.96)) 22% 88% / 14px 14px no-repeat,
+    linear-gradient(to right, rgba(2, 8, 5, 0.96), rgba(2, 8, 5, 0)) left / 100% 100% no-repeat;
+}
 
-    /* bottom random blocks */
-    linear-gradient(rgba(2, 8, 5, 0.88), rgba(2, 8, 5, 0.88)) 28% 95% / 18px 18px no-repeat,
-    linear-gradient(rgba(2, 8, 5, 0.88), rgba(2, 8, 5, 0.88)) 48% 93% / 14px 14px no-repeat,
-    linear-gradient(rgba(2, 8, 5, 0.88), rgba(2, 8, 5, 0.88)) 74% 96% / 20px 20px no-repeat;
+.pixel-edge-right {
+  right: 0;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  background:
+    linear-gradient(rgba(2, 8, 5, 0.96), rgba(2, 8, 5, 0.96)) 86% 12% / 18px 18px no-repeat,
+    linear-gradient(rgba(2, 8, 5, 0.96), rgba(2, 8, 5, 0.96)) 76% 26% / 14px 14px no-repeat,
+    linear-gradient(rgba(2, 8, 5, 0.96), rgba(2, 8, 5, 0.96)) 88% 42% / 22px 22px no-repeat,
+    linear-gradient(rgba(2, 8, 5, 0.96), rgba(2, 8, 5, 0.96)) 74% 60% / 16px 16px no-repeat,
+    linear-gradient(rgba(2, 8, 5, 0.96), rgba(2, 8, 5, 0.96)) 86% 78% / 20px 20px no-repeat,
+    linear-gradient(rgba(2, 8, 5, 0.96), rgba(2, 8, 5, 0.96)) 78% 90% / 14px 14px no-repeat,
+    linear-gradient(to left, rgba(2, 8, 5, 0.96), rgba(2, 8, 5, 0)) right / 100% 100% no-repeat;
 }
 
 .hero-photo {
