@@ -1,6 +1,5 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
-  Decal,
   Environment,
   Float,
   MeshTransmissionMaterial,
@@ -22,29 +21,6 @@ function lerp(a: number, b: number, t: number) {
   return a + (b - a) * t;
 }
 
-function PentagonTexture() {
-  return useMemo(() => {
-    const canvas = document.createElement("canvas");
-    canvas.width = 512;
-    canvas.height = 512;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return new THREE.CanvasTexture(canvas);
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "#0d0f0f";
-
-    const cx = canvas.width / 2;
-    const cy = canvas.height / 2;
-    const r = 150;
-
-    ctx.beginPath();
-    for (let i = 0; i < 5; i++) {
-      const angle = -Math.PI / 2 + (i * Math.PI * 2) / 5;
-      const x = cx + Math.cos(angle) * r;
-      const y = cy + Math.sin(angle) * r;
-      if (i === 0) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
-    }
     ctx.closePath();
     ctx.fill();
 
@@ -57,7 +33,6 @@ function PentagonTexture() {
 
 function Football({ position, emphasis = 0 }: { position: [number, number, number]; emphasis?: number }) {
   const group = useRef<THREE.Group>(null);
-  const pentagonMap = PentagonTexture();
 
   useFrame((state) => {
     if (!group.current) return;
@@ -68,22 +43,44 @@ function Football({ position, emphasis = 0 }: { position: [number, number, numbe
     group.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 1.05) * (0.12 + emphasis * 0.06);
   });
 
+  const patches = [
+    { pos: [0, 0, 0.79], rot: [0, 0, 0], size: 0.24 },
+    { pos: [0.42, 0.18, 0.63], rot: [0.3, 0.7, 0.15], size: 0.18 },
+    { pos: [-0.42, 0.18, 0.63], rot: [0.3, -0.7, -0.15], size: 0.18 },
+    { pos: [0.27, -0.38, 0.63], rot: [-0.8, 0.45, 0.1], size: 0.17 },
+    { pos: [-0.27, -0.38, 0.63], rot: [-0.8, -0.45, -0.1], size: 0.17 },
+    { pos: [0, 0.52, 0.48], rot: [1.05, 0, 0], size: 0.16 },
+
+    { pos: [0.72, 0.02, 0.25], rot: [0, 1.2, 0.05], size: 0.16 },
+    { pos: [-0.72, 0.02, 0.25], rot: [0, -1.2, -0.05], size: 0.16 },
+    { pos: [0.55, 0.48, 0.18], rot: [0.75, 1.0, 0.2], size: 0.14 },
+    { pos: [-0.55, 0.48, 0.18], rot: [0.75, -1.0, -0.2], size: 0.14 },
+    { pos: [0.52, -0.48, 0.18], rot: [-0.75, 1.0, -0.2], size: 0.14 },
+    { pos: [-0.52, -0.48, 0.18], rot: [-0.75, -1.0, 0.2], size: 0.14 },
+
+    { pos: [0, -0.7, 0.15], rot: [-1.1, 0, 0], size: 0.15 },
+    { pos: [0, 0, -0.79], rot: [0, Math.PI, 0], size: 0.24 },
+    { pos: [0.48, 0.2, -0.6], rot: [0.25, 2.4, 0.1], size: 0.17 },
+    { pos: [-0.48, 0.2, -0.6], rot: [0.25, -2.4, -0.1], size: 0.17 }
+  ] as const;
+
   return (
     <group ref={group} position={position}>
       <mesh castShadow receiveShadow>
         <sphereGeometry args={[0.82, 64, 64]} />
-        <meshStandardMaterial color="#f7fff9" roughness={0.72} metalness={0.08} />
+        <meshStandardMaterial color="#f7fff9" roughness={0.72} metalness={0.06} />
       </mesh>
 
-      <Decal position={[0, 0, 0.76]} rotation={[0, 0, 0]} scale={0.52} map={pentagonMap} />
-      <Decal position={[0.56, 0.22, 0.46]} rotation={[0.18, 0.95, 0.12]} scale={0.42} map={pentagonMap} />
-      <Decal position={[-0.56, 0.22, 0.46]} rotation={[0.18, -0.95, -0.12]} scale={0.42} map={pentagonMap} />
-      <Decal position={[0.34, -0.48, 0.46]} rotation={[-0.95, 0.55, 0.18]} scale={0.4} map={pentagonMap} />
-      <Decal position={[-0.34, -0.48, 0.46]} rotation={[-0.95, -0.55, -0.18]} scale={0.4} map={pentagonMap} />
-      <Decal position={[0, 0.66, 0.18]} rotation={[1.18, 0, 0]} scale={0.38} map={pentagonMap} />
-      <Decal position={[0, -0.68, 0.16]} rotation={[-1.12, 0, 0]} scale={0.38} map={pentagonMap} />
-      <Decal position={[0.72, 0, 0.08]} rotation={[0, 1.57, 0]} scale={0.34} map={pentagonMap} />
-      <Decal position={[-0.72, 0, 0.08]} rotation={[0, -1.57, 0]} scale={0.34} map={pentagonMap} />
+      {patches.map((patch, i) => (
+        <mesh
+          key={i}
+          position={patch.pos as [number, number, number]}
+          rotation={patch.rot as [number, number, number]}
+        >
+          <circleGeometry args={[patch.size, 6]} />
+          <meshStandardMaterial color="#101212" roughness={0.9} metalness={0.04} />
+        </mesh>
+      ))}
     </group>
   );
 }
