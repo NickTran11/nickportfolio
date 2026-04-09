@@ -228,13 +228,9 @@ export default function App() {
 </motion.div>
 
             <motion.div className="hero-photo-card" {...fadeUp}>
-  <div className="hero-photo-wrap hero-photo-only">
-  <img src="/profile.png" alt="Nick Tran portrait" className="hero-photo" />
-  <div className="pixel-edge pixel-edge-top" />
-  <div className="pixel-edge pixel-edge-bottom" />
-  <div className="pixel-edge pixel-edge-left" />
-  <div className="pixel-edge pixel-edge-right" />
-</div>
+  <div className="hero-photo-wrap">
+    <img src="/profile.png" alt="Nick Tran portrait" className="hero-photo clean-photo" />
+  </div>
 </motion.div>
           </div>
         </section>
