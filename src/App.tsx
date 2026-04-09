@@ -197,71 +197,41 @@ export default function App() {
         <section id="intro" className="screen-section intro-section">
           <div className="content-shell hero-shell">
             <motion.div className="hero-copy" {...fadeUp}>
-              <p className="eyebrow">
-                <Sparkles size={14} /> IT • Cybersecurity • OT Direction
-              </p>
+  <h1 className="welcome-title">
+    <span>Welcome</span>
+  </h1>
 
-              <h1>
-                I build <span>bold digital experiences</span> with security thinking, motion, and technical depth.
-              </h1>
+  <p className="eyebrow hero-tagline">
+    <Sparkles size={14} /> IT Networking • Cybersecurity • Instrumentation
+  </p>
 
-              <p className="hero-text">
-                I&apos;m Nick Tran, an IT and petroleum engineering professional in Calgary focused on networking,
-                cybersecurity, industrial technology, and hands-on technical projects. This portfolio blends my love
-                for football, chess, strategy, and immersive design into one futuristic experience.
-              </p>
+  <div className="hero-actions">
+    <a className="primary-button" href="#projects">
+      View Projects <ChevronRight size={18} />
+    </a>
+    <a className="secondary-button" href="#resume">
+      Resume Preview
+    </a>
+  </div>
 
-              <div className="hero-actions">
-                <a className="primary-button" href="#projects">
-                  View Projects <ChevronRight size={18} />
-                </a>
-                <a className="secondary-button" href="#resume">
-                  Resume Preview
-                </a>
-              </div>
+  <div className="social-row">
+    <a href="https://www.linkedin.com/in/bach-tran-8b8bbb325/" target="_blank" rel="noreferrer">
+      <Linkedin size={18} /> LinkedIn
+    </a>
+    <a href="https://github.com/NickTran11" target="_blank" rel="noreferrer">
+      <Github size={18} /> GitHub
+    </a>
+    <a href="mailto:nicktranbach@gmail.com">
+      <Mail size={18} /> Email
+    </a>
+  </div>
+</motion.div>
 
-              <div className="social-row">
-                <a href="https://www.linkedin.com/in/bach-tran-8b8bbb325/" target="_blank" rel="noreferrer">
-                  <Linkedin size={18} /> LinkedIn
-                </a>
-                <a href="https://github.com/NickTran11" target="_blank" rel="noreferrer">
-                  <Github size={18} /> GitHub
-                </a>
-                <a href="mailto:nicktranbach@gmail.com">
-                  <Mail size={18} /> Email
-                </a>
-              </div>
-            </motion.div>
-
-            <motion.div className="hero-card glass-card" {...fadeUp}>
-              <div className="hero-photo-wrap">
-                <img src="/profile.png" alt="Nick Tran portrait" className="hero-photo" />
-              </div>
-
-              <div className="hero-card-top">
-                <span className="status-pill">Available for opportunities</span>
-                <span className="mini-chip">Calgary, AB</span>
-              </div>
-
-              <div className="stat-grid">
-                <div>
-                  <span>Focus</span>
-                  <strong>Networking + Security + OT</strong>
-                </div>
-                <div>
-                  <span>Mindset</span>
-                  <strong>Creative, analytical, strategic</strong>
-                </div>
-                <div>
-                  <span>Energy</span>
-                  <strong>Football pace + chess discipline</strong>
-                </div>
-                <div>
-                  <span>Goal</span>
-                  <strong>Build memorable technical work</strong>
-                </div>
-              </div>
-            </motion.div>
+            <motion.div className="hero-photo-card" {...fadeUp}>
+  <div className="hero-photo-wrap hero-photo-only">
+    <img src="/profile.png" alt="Nick Tran portrait" className="hero-photo" />
+  </div>
+</motion.div>
           </div>
         </section>
 
