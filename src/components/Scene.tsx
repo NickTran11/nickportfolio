@@ -72,6 +72,20 @@ function Football({ position, emphasis = 0 }: { position: [number, number, numbe
   />
 </mesh>
 
+<mesh>
+  <sphereGeometry args={[0.826, 64, 64]} />
+  <meshPhysicalMaterial
+    color="#ffffff"
+    transparent
+    opacity={0.08}
+    roughness={0.05}
+    metalness={0}
+    clearcoat={1}
+    clearcoatRoughness={0.02}
+    reflectivity={1}
+  />
+</mesh>
+      
       {/* 12 regular black pentagons */}
       {patchPoints.map((n, i) => {
         const pos = n.clone().multiplyScalar(0.825);
@@ -88,7 +102,14 @@ function Football({ position, emphasis = 0 }: { position: [number, number, numbe
             rotation={[euler.x, euler.y, euler.z]}
           >
             <circleGeometry args={[0.3, 5]} />
-            <meshStandardMaterial color="#0b0d10" roughness={0.95} metalness={0.02} />
+            <meshPhysicalMaterial
+  color="#0b0d10"
+  roughness={0.28}
+  metalness={0.18}
+  clearcoat={0.9}
+  clearcoatRoughness={0.12}
+  reflectivity={1}
+/>
           </mesh>
         );
       })}
