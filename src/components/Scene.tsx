@@ -61,9 +61,16 @@ function Football({ position, emphasis = 0 }: { position: [number, number, numbe
     <group ref={group} position={position}>
       {/* base ball */}
       <mesh castShadow receiveShadow>
-        <sphereGeometry args={[0.82, 64, 64]} />
-        <meshStandardMaterial color="#f7fff9" roughness={0.72} metalness={0.06} />
-      </mesh>
+  <sphereGeometry args={[0.82, 64, 64]} />
+  <meshPhysicalMaterial
+    color="#f7fff9"
+    roughness={0.22}
+    metalness={0.08}
+    clearcoat={1}
+    clearcoatRoughness={0.08}
+    reflectivity={1}
+  />
+</mesh>
 
       {/* 12 regular black pentagons */}
       {patchPoints.map((n, i) => {
