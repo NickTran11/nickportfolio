@@ -358,7 +358,7 @@ code {
 
 .hero-photo-card {
   justify-self: end;
-  width: min(100%, 430px);
+  width: min(100%, 600px);
 }
 
 .hero-photo-wrap {
