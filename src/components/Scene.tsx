@@ -22,67 +22,69 @@ function lerp(a: number, b: number, t: number) {
   return a + (b - a) * t;
 }
 
-function SoccerTexture() {
+function PentagonTexture() {
   return useMemo(() => {
     const canvas = document.createElement("canvas");
-    canvas.width = 1024;
-    canvas.height = 1024;
+    canvas.width = 512;
+    canvas.height = 512;
     const ctx = canvas.getContext("2d");
     if (!ctx) return new THREE.CanvasTexture(canvas);
 
-    ctx.fillStyle = "#f7fff9";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    const pentagons = [
-      [512, 170, 80],
-      [320, 320, 70],
-      [704, 320, 70],
-      [250, 590, 70],
-      [512, 720, 80],
-      [774, 590, 70],
-      [412, 455, 56],
-      [612, 455, 56]
-    ];
-
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "#0d0f0f";
-    pentagons.forEach(([x, y, r]) => {
-      ctx.beginPath();
-      for (let i = 0; i < 5; i++) {
-        const angle = -Math.PI / 2 + (i * Math.PI * 2) / 5;
-        const px = x + Math.cos(angle) * r;
-        const py = y + Math.sin(angle) * r;
-        if (i === 0) ctx.moveTo(px, py);
-        else ctx.lineTo(px, py);
-      }
-      ctx.closePath();
-      ctx.fill();
-    });
+
+    const cx = canvas.width / 2;
+    const cy = canvas.height / 2;
+    const r = 150;
+
+    ctx.beginPath();
+    for (let i = 0; i < 5; i++) {
+      const angle = -Math.PI / 2 + (i * Math.PI * 2) / 5;
+      const x = cx + Math.cos(angle) * r;
+      const y = cy + Math.sin(angle) * r;
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.fill();
 
     const texture = new THREE.CanvasTexture(canvas);
-    texture.anisotropy = 8;
     texture.colorSpace = THREE.SRGBColorSpace;
+    texture.needsUpdate = true;
     return texture;
   }, []);
 }
 
 function Football({ position, emphasis = 0 }: { position: [number, number, number]; emphasis?: number }) {
-  const ref = useRef<THREE.Mesh>(null);
-  const texture = SoccerTexture();
+  const group = useRef<THREE.Group>(null);
+  const pentagonMap = PentagonTexture();
 
   useFrame((state) => {
-    if (!ref.current) return;
+    if (!group.current) return;
     const scale = lerp(1, 1.35, emphasis);
-    ref.current.scale.setScalar(scale);
-    ref.current.rotation.x = state.clock.elapsedTime * 0.35;
-    ref.current.rotation.y = state.clock.elapsedTime * 0.55;
-    ref.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 1.05) * (0.12 + emphasis * 0.06);
+    group.current.scale.setScalar(scale);
+    group.current.rotation.x = state.clock.elapsedTime * 0.35;
+    group.current.rotation.y = state.clock.elapsedTime * 0.55;
+    group.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 1.05) * (0.12 + emphasis * 0.06);
   });
 
   return (
-    <mesh ref={ref} position={position}>
-      <sphereGeometry args={[0.82, 64, 64]} />
-      <meshStandardMaterial map={texture} roughness={0.7} metalness={0.15} />
-    </mesh>
+    <group ref={group} position={position}>
+      <mesh castShadow receiveShadow>
+        <sphereGeometry args={[0.82, 64, 64]} />
+        <meshStandardMaterial color="#f7fff9" roughness={0.72} metalness={0.08} />
+      </mesh>
+
+      <Decal position={[0, 0, 0.76]} rotation={[0, 0, 0]} scale={0.52} map={pentagonMap} />
+      <Decal position={[0.56, 0.22, 0.46]} rotation={[0.18, 0.95, 0.12]} scale={0.42} map={pentagonMap} />
+      <Decal position={[-0.56, 0.22, 0.46]} rotation={[0.18, -0.95, -0.12]} scale={0.42} map={pentagonMap} />
+      <Decal position={[0.34, -0.48, 0.46]} rotation={[-0.95, 0.55, 0.18]} scale={0.4} map={pentagonMap} />
+      <Decal position={[-0.34, -0.48, 0.46]} rotation={[-0.95, -0.55, -0.18]} scale={0.4} map={pentagonMap} />
+      <Decal position={[0, 0.66, 0.18]} rotation={[1.18, 0, 0]} scale={0.38} map={pentagonMap} />
+      <Decal position={[0, -0.68, 0.16]} rotation={[-1.12, 0, 0]} scale={0.38} map={pentagonMap} />
+      <Decal position={[0.72, 0, 0.08]} rotation={[0, 1.57, 0]} scale={0.34} map={pentagonMap} />
+      <Decal position={[-0.72, 0, 0.08]} rotation={[0, -1.57, 0]} scale={0.34} map={pentagonMap} />
+    </group>
   );
 }
 
