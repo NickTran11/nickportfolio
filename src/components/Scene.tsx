@@ -7,7 +7,7 @@ import {
   Sparkles,
   Text
 } from "@react-three/drei";
-import { useMemo, useRef } from "react";
+import { useRef } from "react";
 import * as THREE from "three";
 
 export type FocusKey = "none" | "ring" | "king" | "board" | "glass" | "football";
@@ -19,16 +19,6 @@ type FocusConfig = {
 
 function lerp(a: number, b: number, t: number) {
   return a + (b - a) * t;
-}
-
-    ctx.closePath();
-    ctx.fill();
-
-    const texture = new THREE.CanvasTexture(canvas);
-    texture.colorSpace = THREE.SRGBColorSpace;
-    texture.needsUpdate = true;
-    return texture;
-  }, []);
 }
 
 function Football({ position, emphasis = 0 }: { position: [number, number, number]; emphasis?: number }) {
@@ -50,14 +40,12 @@ function Football({ position, emphasis = 0 }: { position: [number, number, numbe
     { pos: [0.27, -0.38, 0.63], rot: [-0.8, 0.45, 0.1], size: 0.17 },
     { pos: [-0.27, -0.38, 0.63], rot: [-0.8, -0.45, -0.1], size: 0.17 },
     { pos: [0, 0.52, 0.48], rot: [1.05, 0, 0], size: 0.16 },
-
     { pos: [0.72, 0.02, 0.25], rot: [0, 1.2, 0.05], size: 0.16 },
     { pos: [-0.72, 0.02, 0.25], rot: [0, -1.2, -0.05], size: 0.16 },
     { pos: [0.55, 0.48, 0.18], rot: [0.75, 1.0, 0.2], size: 0.14 },
     { pos: [-0.55, 0.48, 0.18], rot: [0.75, -1.0, -0.2], size: 0.14 },
     { pos: [0.52, -0.48, 0.18], rot: [-0.75, 1.0, -0.2], size: 0.14 },
     { pos: [-0.52, -0.48, 0.18], rot: [-0.75, -1.0, 0.2], size: 0.14 },
-
     { pos: [0, -0.7, 0.15], rot: [-1.1, 0, 0], size: 0.15 },
     { pos: [0, 0, -0.79], rot: [0, Math.PI, 0], size: 0.24 },
     { pos: [0.48, 0.2, -0.6], rot: [0.25, 2.4, 0.1], size: 0.17 },
@@ -230,7 +218,13 @@ function Ring({
   return (
     <mesh ref={ref} position={position} rotation={rotation}>
       <torusGeometry args={[1.35, 0.06, 24, 120]} />
-      <meshStandardMaterial color="#7fffc6" emissive="#0bd66f" emissiveIntensity={0.9 + emphasis * 1.4} metalness={0.6} roughness={0.15} />
+      <meshStandardMaterial
+        color="#7fffc6"
+        emissive="#0bd66f"
+        emissiveIntensity={0.9 + emphasis * 1.4}
+        metalness={0.6}
+        roughness={0.15}
+      />
     </mesh>
   );
 }
