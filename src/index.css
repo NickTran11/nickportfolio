@@ -244,12 +244,29 @@ code {
   line-height: 0.9;
   font-weight: 800;
   letter-spacing: -0.06em;
-  color: #ecfff5;
-  text-shadow:
-    0 0 10px rgba(130, 255, 210, 0.18),
-    0 0 22px rgba(60, 255, 160, 0.12);
+  color: #dfffee;
   position: relative;
-  animation: welcomeGlow 4s ease-in-out infinite;
+  background:
+    linear-gradient(
+      115deg,
+      #dfffee 0%,
+      #dfffee 38%,
+      #79ffbf 48%,
+      #dfffee 58%,
+      #dfffee 100%
+    );
+  background-size: 220% 100%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow:
+    0 0 10px rgba(130, 255, 210, 0.16),
+    0 0 22px rgba(60, 255, 160, 0.1);
+  filter: drop-shadow(0 0 6px rgba(75, 255, 170, 0.16));
+  animation:
+    welcomeGlow 4s ease-in-out infinite,
+    welcomeSweep 7s ease-in-out infinite alternate;
 }
 
 .hero-copy h1 span {
