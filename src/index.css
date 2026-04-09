@@ -675,6 +675,21 @@ code {
   display: inline-flex;
 }
 
+@keyframes welcomeGlow {
+  0%, 100% {
+    text-shadow:
+      0 0 10px rgba(130, 255, 210, 0.18),
+      0 0 22px rgba(60, 255, 160, 0.12);
+    transform: translateY(0);
+  }
+  50% {
+    text-shadow:
+      0 0 14px rgba(130, 255, 210, 0.26),
+      0 0 30px rgba(60, 255, 160, 0.18);
+    transform: translateY(-1px);
+  }
+}
+
 @media (max-width: 1180px) {
   .hero-shell,
   .about-grid,
@@ -726,8 +741,12 @@ code {
   }
 
   .hero-photo-wrap {
-    height: 260px;
-  }
+  height: 200px;
+}
+
+.hero-photo-only {
+  height: 360px;
+}
 
   .stat-grid {
     grid-template-columns: 1fr;
