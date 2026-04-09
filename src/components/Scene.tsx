@@ -43,37 +43,69 @@ function FootballTexture() {
   }, []);
 }
 
-function FootballModel({ emphasis = 0 }: { emphasis?: number }) {
-  const { scene } = useGLTF("/football/soccer_ball.gltf");
-
-  return <primitive object={scene.clone()} scale={lerp(0.8, 1.2, emphasis)} />;
-}
-
 function Football({ position, emphasis = 0 }: { position: [number, number, number]; emphasis?: number }) {
   const group = useRef<THREE.Group>(null);
 
+  const patchNormals = [
+    [0, 0, 1],
+    [0.62, 0.22, 0.74],
+    [-0.62, 0.22, 0.74],
+    [0.35, -0.62, 0.7],
+    [-0.35, -0.62, 0.7],
+    [0, 0.82, 0.5],
+
+    [0.96, 0.06, 0.18],
+    [-0.96, 0.06, 0.18],
+    [0.58, 0.76, 0.26],
+    [-0.58, 0.76, 0.26],
+    [0.58, -0.76, 0.26],
+    [-0.58, -0.76, 0.26],
+
+    [0, 0, -1],
+    [0.62, 0.22, -0.74],
+    [-0.62, 0.22, -0.74],
+    [0.35, -0.62, -0.7],
+    [-0.35, -0.62, -0.7],
+    [0, 0.82, -0.5]
+  ] as const;
+
   useFrame((state) => {
     if (!group.current) return;
-
-    group.current.rotation.y += 0.01;
-    group.current.rotation.x += 0.005;
-
+    const scale = lerp(1, 1.35, emphasis);
+    group.current.scale.setScalar(scale);
+    group.current.rotation.y = state.clock.elapsedTime * 0.55;
+    group.current.rotation.x = state.clock.elapsedTime * 0.35;
     group.current.position.y =
-      position[1] + Math.sin(state.clock.elapsedTime * 1.2) * (0.12 + emphasis * 0.08);
+      position[1] + Math.sin(state.clock.elapsedTime * 1.05) * (0.12 + emphasis * 0.06);
   });
 
   return (
     <group ref={group} position={position}>
-      <Suspense
-        fallback={
-          <mesh scale={lerp(0.8, 1.2, emphasis)}>
-            <sphereGeometry args={[0.82, 48, 48]} />
-            <meshStandardMaterial color="#f7fff9" roughness={0.72} metalness={0.06} />
+      <mesh castShadow receiveShadow>
+        <sphereGeometry args={[0.82, 64, 64]} />
+        <meshStandardMaterial color="#f7fff9" roughness={0.72} metalness={0.06} />
+      </mesh>
+
+      {patchNormals.map((normal, i) => {
+        const n = new THREE.Vector3(normal[0], normal[1], normal[2]).normalize();
+        const pos = n.clone().multiplyScalar(0.79);
+        const quat = new THREE.Quaternion().setFromUnitVectors(
+          new THREE.Vector3(0, 0, 1),
+          n
+        );
+        const euler = new THREE.Euler().setFromQuaternion(quat);
+
+        return (
+          <mesh
+            key={i}
+            position={[pos.x, pos.y, pos.z]}
+            rotation={[euler.x, euler.y, euler.z]}
+          >
+            <circleGeometry args={[0.16, 5]} />
+            <meshStandardMaterial color="#111315" roughness={0.92} metalness={0.03} />
           </mesh>
-        }
-      >
-        <FootballModel emphasis={emphasis} />
-      </Suspense>
+        );
+      })}
     </group>
   );
 }
@@ -363,5 +395,3 @@ export default function Scene({
     </div>
   );
 }
-
-useGLTF.preload("/football/soccer_ball.gltf");
