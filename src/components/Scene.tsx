@@ -44,30 +44,37 @@ function FootballTexture() {
   }, []);
 }
 
+function FootballModel({ emphasis = 0 }: { emphasis?: number }) {
+  const { scene } = useGLTF("/football/soccer_ball.gltf");
+
+  return <primitive object={scene.clone()} scale={lerp(0.8, 1.2, emphasis)} />;
+}
+
 function Football({ position, emphasis = 0 }: { position: [number, number, number]; emphasis?: number }) {
   const group = useRef<THREE.Group>(null);
-
-  const { scene } = useGLTF("/football/soccer_ball.gltf");
 
   useFrame((state) => {
     if (!group.current) return;
 
-    const scale = lerp(0.8, 1.2, emphasis);
-    group.current.scale.setScalar(scale);
-
-    // smooth rotation
     group.current.rotation.y += 0.01;
     group.current.rotation.x += 0.005;
 
-    // floating motion
     group.current.position.y =
-      position[1] +
-      Math.sin(state.clock.elapsedTime * 1.2) * (0.12 + emphasis * 0.08);
+      position[1] + Math.sin(state.clock.elapsedTime * 1.2) * (0.12 + emphasis * 0.08);
   });
 
   return (
     <group ref={group} position={position}>
-      <primitive object={scene.clone()} scale={1.3} />
+      <Suspense
+        fallback={
+          <mesh scale={lerp(0.8, 1.2, emphasis)}>
+            <sphereGeometry args={[0.82, 48, 48]} />
+            <meshStandardMaterial color="#f7fff9" roughness={0.72} metalness={0.06} />
+          </mesh>
+        }
+      >
+        <FootballModel emphasis={emphasis} />
+      </Suspense>
     </group>
   );
 }
