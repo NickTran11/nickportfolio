@@ -374,12 +374,12 @@ code {
 .hero-photo-only {
   position: relative;
   margin: 0;
-  height: 560px;
-  border-radius: 30px;
+  height: auto;
+  border-radius: 0;
   border: none;
-  overflow: hidden;
+  overflow: visible;
   box-shadow: none;
-  isolation: isolate;
+  isolation: auto;
   background: transparent;
 }
 
