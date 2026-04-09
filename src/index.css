@@ -215,6 +215,16 @@ code {
   margin-bottom: 1rem;
 }
 
+.hero-tagline {
+  padding: 0.85rem 1.25rem;
+  font-size: 1rem;
+  border-radius: 18px;
+  background: rgba(173, 255, 219, 0.1);
+  border: 1px solid rgba(173, 255, 219, 0.18);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  margin-bottom: 1.2rem;
+}
+
 .hero-copy h1 {
   font-size: clamp(2.5rem, 4.7vw, 4.9rem);
   line-height: 0.9;
