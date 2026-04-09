@@ -59,14 +59,16 @@ function Football({ position, emphasis = 0 }: { position: [number, number, numbe
 
   return (
     <group ref={group} position={position}>
+      {/* white ball */}
       <mesh castShadow receiveShadow>
         <sphereGeometry args={[0.82, 64, 64]} />
         <meshStandardMaterial color="#f7fff9" roughness={0.72} metalness={0.06} />
       </mesh>
 
+      {/* black patches */}
       {patchNormals.map((normal, i) => {
         const n = new THREE.Vector3(normal[0], normal[1], normal[2]).normalize();
-        const pos = n.clone().multiplyScalar(0.79);
+        const pos = n.clone().multiplyScalar(0.821);
         const quat = new THREE.Quaternion().setFromUnitVectors(
           new THREE.Vector3(0, 0, 1),
           n
@@ -79,8 +81,8 @@ function Football({ position, emphasis = 0 }: { position: [number, number, numbe
             position={[pos.x, pos.y, pos.z]}
             rotation={[euler.x, euler.y, euler.z]}
           >
-            <circleGeometry args={[0.16, 5]} />
-            <meshStandardMaterial color="#111315" roughness={0.92} metalness={0.03} />
+            <circleGeometry args={[0.14, 5]} />
+            <meshStandardMaterial color="#0b0d10" roughness={0.95} metalness={0.02} />
           </mesh>
         );
       })}
