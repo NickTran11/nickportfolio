@@ -257,13 +257,6 @@ code {
   text-shadow: 0 0 28px rgba(78, 255, 164, 0.28);
 }
 
-.hero-text {
-  max-width: 56ch;
-  color: var(--muted);
-  font-size: 0.98rem;
-  margin: 0 0 1.1rem;
-}
-
 .hero-actions,
 .social-row,
 .contact-actions {
