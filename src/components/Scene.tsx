@@ -1,5 +1,6 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
+  Decal,
   Environment,
   Float,
   MeshTransmissionMaterial,
@@ -7,7 +8,7 @@ import {
   Sparkles,
   Text
 } from "@react-three/drei";
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 import * as THREE from "three";
 
 export type FocusKey = "none" | "ring" | "king" | "board" | "glass" | "football";
@@ -21,8 +22,42 @@ function lerp(a: number, b: number, t: number) {
   return a + (b - a) * t;
 }
 
+function PentagonTexture() {
+  return useMemo(() => {
+    const canvas = document.createElement("canvas");
+    canvas.width = 512;
+    canvas.height = 512;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return new THREE.CanvasTexture(canvas);
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#0b0d10";
+
+    const cx = canvas.width / 2;
+    const cy = canvas.height / 2;
+    const r = 165;
+
+    ctx.beginPath();
+    for (let i = 0; i < 5; i++) {
+      const angle = -Math.PI / 2 + (i * Math.PI * 2) / 5;
+      const x = cx + Math.cos(angle) * r;
+      const y = cy + Math.sin(angle) * r;
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.fill();
+
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.colorSpace = THREE.SRGBColorSpace;
+    texture.needsUpdate = true;
+    return texture;
+  }, []);
+}
+
 function Football({ position, emphasis = 0 }: { position: [number, number, number]; emphasis?: number }) {
   const group = useRef<THREE.Group>(null);
+  const pentagonMap = PentagonTexture();
 
   // 12 regular points of an icosahedron
   const phi = (1 + Math.sqrt(5)) / 2;
@@ -86,33 +121,25 @@ function Football({ position, emphasis = 0 }: { position: [number, number, numbe
   />
 </mesh>
       
-      {/* 12 regular black pentagons */}
-      {patchPoints.map((n, i) => {
-        const pos = n.clone().multiplyScalar(0.825);
-        const quat = new THREE.Quaternion().setFromUnitVectors(
-          new THREE.Vector3(0, 0, 1),
-          n
-        );
-        const euler = new THREE.Euler().setFromQuaternion(quat);
+      {/* black patches as curved decals */}
+{patchPoints.map((n, i) => {
+  const pos = n.clone().multiplyScalar(0.79);
+  const quat = new THREE.Quaternion().setFromUnitVectors(
+    new THREE.Vector3(0, 0, 1),
+    n
+  );
+  const euler = new THREE.Euler().setFromQuaternion(quat);
 
-        return (
-          <mesh
-            key={i}
-            position={[pos.x, pos.y, pos.z]}
-            rotation={[euler.x, euler.y, euler.z]}
-          >
-            <circleGeometry args={[0.3, 5]} />
-            <meshPhysicalMaterial
-  color="#0b0d10"
-  roughness={0.28}
-  metalness={0.18}
-  clearcoat={0.9}
-  clearcoatRoughness={0.12}
-  reflectivity={1}
-/>
-          </mesh>
-        );
-      })}
+  return (
+    <Decal
+      key={i}
+      position={[pos.x, pos.y, pos.z]}
+      rotation={[euler.x, euler.y, euler.z]}
+      scale={0.34}
+      map={pentagonMap}
+    />
+  );
+})}
     </group>
   );
 }
