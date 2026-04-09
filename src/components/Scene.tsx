@@ -371,7 +371,7 @@ function SceneContents({ activeFocus, scrollProgress }: { activeFocus: FocusKey;
         anchorX="center"
         anchorY="middle"
       >
-        NICK TRAN
+        BACH (NICK) TRAN
       </Text>
 
       <Environment preset="city" />
