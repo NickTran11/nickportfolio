@@ -795,4 +795,6 @@ code {
     0 0 30px rgba(60, 255, 180, 0.08);
 
   display: block;
+
+  transform: translateY(20px);
 }
