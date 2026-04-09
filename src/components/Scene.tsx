@@ -7,7 +7,7 @@ import {
   Sparkles,
   Text
 } from "@react-three/drei";
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 import * as THREE from "three";
 
 export type FocusKey = "none" | "ring" | "king" | "board" | "glass" | "football";
@@ -21,8 +21,21 @@ function lerp(a: number, b: number, t: number) {
   return a + (b - a) * t;
 }
 
+function FootballTexture() {
+  return useMemo(() => {
+    const loader = new THREE.TextureLoader();
+    const texture = loader.load("/football-texture.png");
+    texture.colorSpace = THREE.SRGBColorSpace;
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.RepeatWrapping;
+    texture.repeat.set(1, 1);
+    return texture;
+  }, []);
+}
+
 function Football({ position, emphasis = 0 }: { position: [number, number, number]; emphasis?: number }) {
   const group = useRef<THREE.Group>(null);
+  const footballTexture = FootballTexture();
 
   useFrame((state) => {
     if (!group.current) return;
@@ -33,42 +46,16 @@ function Football({ position, emphasis = 0 }: { position: [number, number, numbe
     group.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 1.05) * (0.12 + emphasis * 0.06);
   });
 
-  const patches = [
-    { pos: [0, 0, 0.79], rot: [0, 0, 0], size: 0.24 },
-    { pos: [0.42, 0.18, 0.63], rot: [0.3, 0.7, 0.15], size: 0.18 },
-    { pos: [-0.42, 0.18, 0.63], rot: [0.3, -0.7, -0.15], size: 0.18 },
-    { pos: [0.27, -0.38, 0.63], rot: [-0.8, 0.45, 0.1], size: 0.17 },
-    { pos: [-0.27, -0.38, 0.63], rot: [-0.8, -0.45, -0.1], size: 0.17 },
-    { pos: [0, 0.52, 0.48], rot: [1.05, 0, 0], size: 0.16 },
-    { pos: [0.72, 0.02, 0.25], rot: [0, 1.2, 0.05], size: 0.16 },
-    { pos: [-0.72, 0.02, 0.25], rot: [0, -1.2, -0.05], size: 0.16 },
-    { pos: [0.55, 0.48, 0.18], rot: [0.75, 1.0, 0.2], size: 0.14 },
-    { pos: [-0.55, 0.48, 0.18], rot: [0.75, -1.0, -0.2], size: 0.14 },
-    { pos: [0.52, -0.48, 0.18], rot: [-0.75, 1.0, -0.2], size: 0.14 },
-    { pos: [-0.52, -0.48, 0.18], rot: [-0.75, -1.0, 0.2], size: 0.14 },
-    { pos: [0, -0.7, 0.15], rot: [-1.1, 0, 0], size: 0.15 },
-    { pos: [0, 0, -0.79], rot: [0, Math.PI, 0], size: 0.24 },
-    { pos: [0.48, 0.2, -0.6], rot: [0.25, 2.4, 0.1], size: 0.17 },
-    { pos: [-0.48, 0.2, -0.6], rot: [0.25, -2.4, -0.1], size: 0.17 }
-  ] as const;
-
   return (
     <group ref={group} position={position}>
       <mesh castShadow receiveShadow>
-        <sphereGeometry args={[0.82, 64, 64]} />
-        <meshStandardMaterial color="#f7fff9" roughness={0.72} metalness={0.06} />
+        <sphereGeometry args={[0.82, 96, 96]} />
+        <meshStandardMaterial
+          map={footballTexture}
+          roughness={0.72}
+          metalness={0.05}
+        />
       </mesh>
-
-      {patches.map((patch, i) => (
-        <mesh
-          key={i}
-          position={patch.pos as [number, number, number]}
-          rotation={patch.rot as [number, number, number]}
-        >
-          <circleGeometry args={[patch.size, 6]} />
-          <meshStandardMaterial color="#101212" roughness={0.9} metalness={0.04} />
-        </mesh>
-      ))}
     </group>
   );
 }
