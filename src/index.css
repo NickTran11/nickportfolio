@@ -261,8 +261,9 @@ code {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow:
-    0 0 10px rgba(130, 255, 210, 0.16),
-    0 0 22px rgba(60, 255, 160, 0.1);
+  0 0 2px rgba(210, 255, 235, 0.95),
+  0 0 8px rgba(75, 255, 170, 0.2),
+  0 0 18px rgba(75, 255, 170, 0.14);
   filter: drop-shadow(0 0 6px rgba(75, 255, 170, 0.16));
   animation:
     welcomeGlow 4s ease-in-out infinite,
