@@ -404,16 +404,40 @@ code {
   border-radius: 30px;
   pointer-events: none;
   z-index: 2;
+  opacity: 0.9;
+
   background:
-    linear-gradient(to right, rgba(2, 8, 5, 0.65) 0%, transparent 10%),
-    linear-gradient(to left, rgba(2, 8, 5, 0.65) 0%, transparent 10%),
-    linear-gradient(to top, rgba(2, 8, 5, 0.45) 0%, transparent 10%),
-    linear-gradient(to bottom, rgba(2, 8, 5, 0.45) 0%, transparent 10%);
-  mask-image:
-    radial-gradient(circle at 50% 50%, transparent 48%, black 78%);
-  -webkit-mask-image:
-    radial-gradient(circle at 50% 50%, transparent 48%, black 78%);
-  opacity: 0.95;
+    /* LEFT pixel fade */
+    linear-gradient(to right, rgba(2, 8, 5, 0.85), transparent) left / 18% 100% no-repeat,
+    repeating-linear-gradient(
+      to bottom,
+      rgba(2, 8, 5, 0.95) 0 10px,
+      rgba(2, 8, 5, 0) 10px 20px
+    ) left / 18% 100% no-repeat,
+
+    /* RIGHT pixel fade */
+    linear-gradient(to left, rgba(2, 8, 5, 0.85), transparent) right / 18% 100% no-repeat,
+    repeating-linear-gradient(
+      to bottom,
+      rgba(2, 8, 5, 0.95) 0 10px,
+      rgba(2, 8, 5, 0) 10px 20px
+    ) right / 18% 100% no-repeat,
+
+    /* TOP */
+    linear-gradient(to bottom, rgba(2, 8, 5, 0.8), transparent) top / 100% 15% no-repeat,
+    repeating-linear-gradient(
+      to right,
+      rgba(2, 8, 5, 0.9) 0 10px,
+      rgba(2, 8, 5, 0) 10px 20px
+    ) top / 100% 15% no-repeat,
+
+    /* BOTTOM */
+    linear-gradient(to top, rgba(2, 8, 5, 0.75), transparent) bottom / 100% 14% no-repeat,
+    repeating-linear-gradient(
+      to right,
+      rgba(2, 8, 5, 0.85) 0 10px,
+      rgba(2, 8, 5, 0) 10px 20px
+    ) bottom / 100% 14% no-repeat;
 }
 
 .hero-photo-only img {
@@ -435,63 +459,10 @@ code {
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: 30px;
-  pointer-events: none;
-  z-index: 2;
-  opacity: 0.9;
-
   background:
-    /* left pixel fade */
-    linear-gradient(to right, rgba(2, 8, 5, 0.85), rgba(2, 8, 5, 0)) left / 18% 100% no-repeat,
-    repeating-linear-gradient(
-      to bottom,
-      rgba(2, 8, 5, 0.95) 0 10px,
-      rgba(2, 8, 5, 0) 10px 20px
-    ) left / 18% 100% no-repeat,
-
-    /* right pixel fade */
-    linear-gradient(to left, rgba(2, 8, 5, 0.85), rgba(2, 8, 5, 0)) right / 18% 100% no-repeat,
-    repeating-linear-gradient(
-      to bottom,
-      rgba(2, 8, 5, 0.95) 0 10px,
-      rgba(2, 8, 5, 0) 10px 20px
-    ) right / 18% 100% no-repeat,
-
-    /* top pixel fade */
-    linear-gradient(to bottom, rgba(2, 8, 5, 0.82), rgba(2, 8, 5, 0)) top / 100% 16% no-repeat,
-    repeating-linear-gradient(
-      to right,
-      rgba(2, 8, 5, 0.92) 0 10px,
-      rgba(2, 8, 5, 0) 10px 20px
-    ) top / 100% 16% no-repeat,
-
-    /* bottom pixel fade */
-    linear-gradient(to top, rgba(2, 8, 5, 0.72), rgba(2, 8, 5, 0)) bottom / 100% 14% no-repeat,
-    repeating-linear-gradient(
-      to right,
-      rgba(2, 8, 5, 0.88) 0 10px,
-      rgba(2, 8, 5, 0) 10px 20px
-    ) bottom / 100% 14% no-repeat;
-}
-
-.hero-photo-wrap .pixel-fade-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
+    linear-gradient(to top, rgba(2, 8, 5, 0.28), rgba(2, 8, 5, 0.02) 40%, rgba(2, 8, 5, 0.04)),
+    linear-gradient(135deg, rgba(60, 255, 160, 0.08), transparent 45%);
   pointer-events: none;
-  border-radius: 30px;
-  opacity: 0.45;
-
-  background:
-    radial-gradient(circle at 8% 14%, rgba(2, 8, 5, 0.9) 0 4px, transparent 5px),
-    radial-gradient(circle at 12% 28%, rgba(2, 8, 5, 0.9) 0 6px, transparent 7px),
-    radial-gradient(circle at 6% 48%, rgba(2, 8, 5, 0.85) 0 5px, transparent 6px),
-    radial-gradient(circle at 10% 68%, rgba(2, 8, 5, 0.9) 0 4px, transparent 5px),
-
-    radial-gradient(circle at 92% 18%, rgba(2, 8, 5, 0.9) 0 4px, transparent 5px),
-    radial-gradient(circle at 88% 34%, rgba(2, 8, 5, 0.85) 0 6px, transparent 7px),
-    radial-gradient(circle at 94% 58%, rgba(2, 8, 5, 0.88) 0 5px, transparent 6px),
-    radial-gradient(circle at 90% 74%, rgba(2, 8, 5, 0.9) 0 4px, transparent 5px);
 }
 
 .hero-card-top,
