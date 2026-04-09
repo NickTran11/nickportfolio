@@ -24,28 +24,28 @@ function lerp(a: number, b: number, t: number) {
 function Football({ position, emphasis = 0 }: { position: [number, number, number]; emphasis?: number }) {
   const group = useRef<THREE.Group>(null);
 
-  const patchNormals = [
-    [0, 0, 1],
-    [0.62, 0.22, 0.74],
-    [-0.62, 0.22, 0.74],
-    [0.35, -0.62, 0.7],
-    [-0.35, -0.62, 0.7],
-    [0, 0.82, 0.5],
+  // 12 regular points of an icosahedron
+  const phi = (1 + Math.sqrt(5)) / 2;
+  const rawPoints = [
+    [-1,  phi, 0],
+    [ 1,  phi, 0],
+    [-1, -phi, 0],
+    [ 1, -phi, 0],
 
-    [0.96, 0.06, 0.18],
-    [-0.96, 0.06, 0.18],
-    [0.58, 0.76, 0.26],
-    [-0.58, 0.76, 0.26],
-    [0.58, -0.76, 0.26],
-    [-0.58, -0.76, 0.26],
+    [0, -1,  phi],
+    [0,  1,  phi],
+    [0, -1, -phi],
+    [0,  1, -phi],
 
-    [0, 0, -1],
-    [0.62, 0.22, -0.74],
-    [-0.62, 0.22, -0.74],
-    [0.35, -0.62, -0.7],
-    [-0.35, -0.62, -0.7],
-    [0, 0.82, -0.5]
+    [ phi, 0, -1],
+    [ phi, 0,  1],
+    [-phi, 0, -1],
+    [-phi, 0,  1]
   ] as const;
+
+  const patchPoints = rawPoints.map(([x, y, z]) =>
+    new THREE.Vector3(x, y, z).normalize()
+  );
 
   useFrame((state) => {
     if (!group.current) return;
@@ -59,16 +59,15 @@ function Football({ position, emphasis = 0 }: { position: [number, number, numbe
 
   return (
     <group ref={group} position={position}>
-      {/* white ball */}
+      {/* base ball */}
       <mesh castShadow receiveShadow>
         <sphereGeometry args={[0.82, 64, 64]} />
         <meshStandardMaterial color="#f7fff9" roughness={0.72} metalness={0.06} />
       </mesh>
 
-      {/* black patches */}
-      {patchNormals.map((normal, i) => {
-        const n = new THREE.Vector3(normal[0], normal[1], normal[2]).normalize();
-        const pos = n.clone().multiplyScalar(0.821);
+      {/* 12 regular black pentagons */}
+      {patchPoints.map((n, i) => {
+        const pos = n.clone().multiplyScalar(0.822);
         const quat = new THREE.Quaternion().setFromUnitVectors(
           new THREE.Vector3(0, 0, 1),
           n
@@ -81,7 +80,7 @@ function Football({ position, emphasis = 0 }: { position: [number, number, numbe
             position={[pos.x, pos.y, pos.z]}
             rotation={[euler.x, euler.y, euler.z]}
           >
-            <circleGeometry args={[0.14, 5]} />
+            <circleGeometry args={[0.12, 5]} />
             <meshStandardMaterial color="#0b0d10" roughness={0.95} metalness={0.02} />
           </mesh>
         );
