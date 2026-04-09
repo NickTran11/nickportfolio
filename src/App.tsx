@@ -175,7 +175,7 @@ export default function App() {
       <header className="topbar">
         <a href="#intro" className="brand">
           <span className="brand-dot" />
-          Nick Tran
+          Bach (Nick) Tran
         </a>
 
         <nav className="nav">
