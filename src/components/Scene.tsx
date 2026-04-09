@@ -1,5 +1,6 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
+  Decal,
   Environment,
   Float,
   MeshTransmissionMaterial,
