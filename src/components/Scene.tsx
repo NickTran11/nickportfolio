@@ -80,7 +80,7 @@ function Football({ position, emphasis = 0 }: { position: [number, number, numbe
             position={[pos.x, pos.y, pos.z]}
             rotation={[euler.x, euler.y, euler.z]}
           >
-            <circleGeometry args={[0.2, 5]} />
+            <circleGeometry args={[0.3, 5]} />
             <meshStandardMaterial color="#0b0d10" roughness={0.95} metalness={0.02} />
           </mesh>
         );
