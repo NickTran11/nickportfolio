@@ -369,6 +369,7 @@ code {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: transparent;
 }
 
 .hero-photo-only {
@@ -768,17 +769,15 @@ code {
 }
 
 .clean-photo {
-  width: 120%;
+  width: 100%;
   height: auto;
-  max-height: 520px;
+  max-height: 560px;
   object-fit: contain;
-  border-radius: 28px;
-
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.35),
-    0 0 30px rgba(60, 255, 180, 0.08);
-
+  object-position: center center;
   display: block;
-
   transform: translateY(20px);
+  border-radius: 0;
+  box-shadow: none;
+  filter: none;
+  background: transparent;
 }
