@@ -25,10 +25,20 @@ function FootballTexture() {
   return useMemo(() => {
     const loader = new THREE.TextureLoader();
     const texture = loader.load("/football-texture.png");
+
     texture.colorSpace = THREE.SRGBColorSpace;
+
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
-    texture.repeat.set(2, 2);
+
+    // 🔥 FIX distortion
+    texture.repeat.set(2, 1.2);
+    texture.offset.set(0, 0.2);
+
+    // rotate so pattern aligns better
+    texture.center.set(0.5, 0.5);
+    texture.rotation = Math.PI / 2;
+
     return texture;
   }, []);
 }
