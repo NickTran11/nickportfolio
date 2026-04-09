@@ -370,31 +370,56 @@ code {
 }
 
 .hero-photo-only {
+  position: relative;
   margin: 0;
   height: 560px;
   border-radius: 30px;
   border: 1px solid rgba(165, 255, 216, 0.16);
   overflow: hidden;
   box-shadow:
-    0 24px 60px rgba(0, 0, 0, 0.38),
+    0 26px 70px rgba(0, 0, 0, 0.42),
     0 0 0 1px rgba(165, 255, 216, 0.08),
-    0 0 35px rgba(90, 255, 180, 0.16);
+    0 0 18px rgba(90, 255, 180, 0.12),
+    0 0 42px rgba(90, 255, 180, 0.18);
+  isolation: isolate;
 }
 
 .hero-photo-only::before {
   content: "";
   position: absolute;
-  inset: -8px;
-  border-radius: 36px;
-  background: radial-gradient(circle at 50% 50%, rgba(110, 255, 203, 0.18), transparent 70%);
-  filter: blur(22px);
+  inset: -10px;
+  border-radius: 38px;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(110, 255, 203, 0.2), transparent 58%),
+    radial-gradient(circle at 50% 50%, rgba(60, 255, 160, 0.12), transparent 78%);
+  filter: blur(24px);
   z-index: 0;
   pointer-events: none;
+}
+
+.hero-photo-only::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 30px;
+  pointer-events: none;
+  z-index: 2;
+  background:
+    linear-gradient(to right, rgba(2, 8, 5, 0.65) 0%, transparent 10%),
+    linear-gradient(to left, rgba(2, 8, 5, 0.65) 0%, transparent 10%),
+    linear-gradient(to top, rgba(2, 8, 5, 0.45) 0%, transparent 10%),
+    linear-gradient(to bottom, rgba(2, 8, 5, 0.45) 0%, transparent 10%);
+  mask-image:
+    radial-gradient(circle at 50% 50%, transparent 48%, black 78%);
+  -webkit-mask-image:
+    radial-gradient(circle at 50% 50%, transparent 48%, black 78%);
+  opacity: 0.95;
 }
 
 .hero-photo-only img {
   position: relative;
   z-index: 1;
+  filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.18));
 }
 
 .hero-photo {
@@ -403,6 +428,7 @@ code {
   object-fit: cover;
   display: block;
   object-position: center top;
+  transform: scale(1.01);
 }
 
 .hero-photo-wrap::after {
