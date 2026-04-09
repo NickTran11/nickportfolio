@@ -5,10 +5,9 @@ import {
   MeshTransmissionMaterial,
   OrbitControls,
   Sparkles,
-  Text,
-  useGLTF
+  Text
 } from "@react-three/drei";
-import { Suspense, useMemo, useRef } from "react";
+import { useRef } from "react";
 import * as THREE from "three";
 
 export type FocusKey = "none" | "ring" | "king" | "board" | "glass" | "football";
