@@ -5,7 +5,8 @@ import {
   MeshTransmissionMaterial,
   OrbitControls,
   Sparkles,
-  Text
+  Text,
+  useGLTF
 } from "@react-three/drei";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
@@ -45,27 +46,28 @@ function FootballTexture() {
 
 function Football({ position, emphasis = 0 }: { position: [number, number, number]; emphasis?: number }) {
   const group = useRef<THREE.Group>(null);
-  const footballTexture = FootballTexture();
+
+  const { scene } = useGLTF("/football/soccer_ball.gltf");
 
   useFrame((state) => {
     if (!group.current) return;
-    const scale = lerp(1, 1.35, emphasis);
+
+    const scale = lerp(0.8, 1.2, emphasis);
     group.current.scale.setScalar(scale);
-    group.current.rotation.x = state.clock.elapsedTime * 0.35;
-    group.current.rotation.y = state.clock.elapsedTime * 0.55;
-    group.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 1.05) * (0.12 + emphasis * 0.06);
+
+    // smooth rotation
+    group.current.rotation.y += 0.01;
+    group.current.rotation.x += 0.005;
+
+    // floating motion
+    group.current.position.y =
+      position[1] +
+      Math.sin(state.clock.elapsedTime * 1.2) * (0.12 + emphasis * 0.08);
   });
 
   return (
     <group ref={group} position={position}>
-      <mesh castShadow receiveShadow>
-        <sphereGeometry args={[0.82, 96, 96]} />
-        <meshStandardMaterial
-          map={footballTexture}
-          roughness={0.72}
-          metalness={0.05}
-        />
-      </mesh>
+      <primitive object={scene.clone()} scale={1.3} />
     </group>
   );
 }
@@ -353,3 +355,5 @@ export default function Scene({
     </div>
   );
 }
+
+useGLTF.preload("/football/soccer_ball.gltf");
