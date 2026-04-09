@@ -229,8 +229,9 @@ export default function App() {
 
             <motion.div className="hero-photo-card" {...fadeUp}>
   <div className="hero-photo-wrap hero-photo-only">
-    <img src="/profile.png" alt="Nick Tran portrait" className="hero-photo" />
-  </div>
+  <img src="/profile.png" className="hero-photo" />
+  <div className="pixel-fade-overlay" />
+</div>
 </motion.div>
           </div>
         </section>
