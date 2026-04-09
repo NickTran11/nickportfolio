@@ -216,11 +216,30 @@ code {
 }
 
 .hero-copy h1 {
-  font-size: clamp(2.5rem, 4.9vw, 4.9rem);
-  line-height: 0.92;
-  margin: 0 0 0.8rem;
+  font-size: clamp(2.5rem, 4.7vw, 4.9rem);
+  line-height: 0.9;
+  margin: 0 0 0.7rem;
   letter-spacing: -0.05em;
-  max-width: 9.2ch;
+  max-width: 8.8ch;
+}
+
+.welcome-title {
+  margin: 0 0 1rem;
+  max-width: none;
+}
+
+.welcome-title span {
+  display: inline-block;
+  font-size: clamp(4rem, 8vw, 7rem);
+  line-height: 0.9;
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  color: #ecfff5;
+  text-shadow:
+    0 0 10px rgba(130, 255, 210, 0.18),
+    0 0 22px rgba(60, 255, 160, 0.12);
+  position: relative;
+  animation: welcomeGlow 4s ease-in-out infinite;
 }
 
 .hero-copy h1 span {
