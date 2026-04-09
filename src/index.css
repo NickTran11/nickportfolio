@@ -334,16 +334,49 @@ code {
 
 .hero-card {
   justify-self: end;
-  width: min(100%, 390px);
+  width: min(100%, 360px);
   overflow: hidden;
+}
+
+.hero-photo-card {
+  justify-self: end;
+  width: min(100%, 430px);
 }
 
 .hero-photo-wrap {
   position: relative;
-  margin: -1.4rem -1.4rem 1rem -1.4rem;
-  height: 250px;
+  margin: -1.4rem -1.4rem 0.8rem -1.4rem;
+  height: 220px;
   overflow: hidden;
   border-bottom: 1px solid rgba(165, 255, 216, 0.12);
+}
+
+.hero-photo-only {
+  margin: 0;
+  height: 560px;
+  border-radius: 30px;
+  border: 1px solid rgba(165, 255, 216, 0.16);
+  overflow: hidden;
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.38),
+    0 0 0 1px rgba(165, 255, 216, 0.08),
+    0 0 35px rgba(90, 255, 180, 0.16);
+}
+
+.hero-photo-only::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 36px;
+  background: radial-gradient(circle at 50% 50%, rgba(110, 255, 203, 0.18), transparent 70%);
+  filter: blur(22px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-photo-only img {
+  position: relative;
+  z-index: 1;
 }
 
 .hero-photo {
@@ -351,7 +384,7 @@ code {
   height: 100%;
   object-fit: cover;
   display: block;
-  object-position: center 22%;
+  object-position: center top;
 }
 
 .hero-photo-wrap::after {
@@ -359,8 +392,8 @@ code {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to top, rgba(2, 8, 5, 0.75), rgba(2, 8, 5, 0.04) 45%, rgba(2, 8, 5, 0.08)),
-    linear-gradient(135deg, rgba(60, 255, 160, 0.12), transparent 45%);
+    linear-gradient(to top, rgba(2, 8, 5, 0.28), rgba(2, 8, 5, 0.02) 40%, rgba(2, 8, 5, 0.04)),
+    linear-gradient(135deg, rgba(60, 255, 160, 0.08), transparent 45%);
   pointer-events: none;
 }
 
