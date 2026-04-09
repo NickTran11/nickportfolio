@@ -8,7 +8,7 @@ import {
   Text,
   useGLTF
 } from "@react-three/drei";
-import { useMemo, useRef } from "react";
+import { Suspense, useMemo, useRef } from "react";
 import * as THREE from "three";
 
 export type FocusKey = "none" | "ring" | "king" | "board" | "glass" | "football";
