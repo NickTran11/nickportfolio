@@ -345,8 +345,10 @@ export default function Scene({
   return (
     <div className="canvas-shell" aria-hidden="true">
       <Canvas camera={{ position: [0, 0.3, 8.2], fov: 46 }} shadows dpr={[1, 2]}>
-        <SceneContents activeFocus={activeFocus} scrollProgress={scrollProgress} />
-      </Canvas>
+  <Suspense fallback={null}>
+    <SceneContents activeFocus={activeFocus} scrollProgress={scrollProgress} />
+  </Suspense>
+</Canvas>
 
       <div className="canvas-glow canvas-glow-1" />
       <div className="canvas-glow canvas-glow-2" />
