@@ -707,6 +707,21 @@ code {
   }
 }
 
+@keyframes welcomeSweep {
+  0% {
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 5px rgba(75, 255, 170, 0.12));
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: drop-shadow(0 0 10px rgba(75, 255, 170, 0.22));
+  }
+  100% {
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 5px rgba(75, 255, 170, 0.12));
+  }
+}
+
 @media (max-width: 1180px) {
   .hero-shell,
   .about-grid,
