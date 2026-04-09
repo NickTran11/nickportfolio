@@ -28,7 +28,7 @@ function FootballTexture() {
     texture.colorSpace = THREE.SRGBColorSpace;
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
-    texture.repeat.set(1, 1);
+    texture.repeat.set(2, 2);
     return texture;
   }, []);
 }
