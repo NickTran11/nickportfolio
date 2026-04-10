@@ -474,6 +474,13 @@ code {
   margin-bottom: 0.5rem;
 }
 
+.about-kicker {
+  font-size: clamp(1.1rem, 2vw, 1.65rem);
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  margin-bottom: 0.2rem;
+}
+
 .section-heading h2 {
   margin: 0;
   font-size: clamp(1.8rem, 3.2vw, 3rem);
