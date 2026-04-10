@@ -375,7 +375,7 @@ code {
 .hero-photo-only {
   position: relative;
   margin: 0;
-  height: auto;
+  height: 700px;
   border-radius: 0;
   border: none;
   overflow: visible;
@@ -387,7 +387,7 @@ code {
 .hero-photo {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
   object-position: center center;
   transform: translateY(20px);
