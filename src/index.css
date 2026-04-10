@@ -352,7 +352,7 @@ code {
 
 .hero-card {
   justify-self: end;
-  width: min(100%, 360px);
+  width: 100%;
   overflow: hidden;
 }
 
