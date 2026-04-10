@@ -359,7 +359,7 @@ code {
 .hero-photo-card {
   justify-self: end;
   width: min(100%, 900px);
-  margin-right: -80px;
+  margin-right: -100px;
 }
 
 .hero-photo-wrap {
