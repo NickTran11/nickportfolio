@@ -1,18 +1,20 @@
 import { motion } from "framer-motion";
 import {
-  Brain,
   BriefcaseBusiness,
   ChevronRight,
+  Cloud,
   Code2,
   ExternalLink,
   FileText,
   Github,
   Linkedin,
   Mail,
+  MonitorCog,
   Network,
+  Radar,
   Shield,
   Sparkles,
-  Trophy
+  SquareTerminal
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import Scene, { FocusKey } from "./components/Scene";
