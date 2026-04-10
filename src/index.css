@@ -190,7 +190,7 @@ code {
 
 .hero-shell {
   display: grid;
-  grid-template-columns: minmax(0, 0.98fr) minmax(320px, 400px);
+  grid-template-columns: 1fr 1.2fr;
   align-items: center;
   gap: 1.25rem;
 }
