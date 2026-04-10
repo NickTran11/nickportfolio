@@ -56,21 +56,54 @@ const skills = [
   "Incident Analysis"
 ];
 
-const highlights = [
+const workFields = [
   {
-    icon: <Shield size={20} />,
-    title: "Security-first mindset",
-    text: "I build projects that mix usability, awareness, and practical security thinking."
+    id: "cyber",
+    title: "Cybersecurity & Networking",
+    icon: <Shield size={18} />,
+    points: [
+      "Network fundamentals (LAN, TCP/IP, firewall)",
+      "Basic security concepts (phishing, threats, protection)"
+    ]
   },
   {
-    icon: <Network size={20} />,
-    title: "IT + OT direction",
-    text: "I connect networking, automation interest, and energy-industry background into one story."
+    id: "cloud",
+    title: "Cloud & IT Systems",
+    icon: <Cloud size={18} />,
+    points: [
+      "Cloud basics (AWS / Azure fundamentals)",
+      "IT support, troubleshooting",
+      "System setup and maintenance"
+    ]
   },
   {
-    icon: <Trophy size={20} />,
-    title: "Competitive edge",
-    text: "Football and chess shape how I think: fast decisions, pattern reading, and positioning."
+    id: "instrumentation",
+    title: "Instrumentation & Industrial Systems (Upcoming)",
+    icon: <Radar size={18} />,
+    points: [
+      "Currently preparing for Instrumentation Engineering Technology",
+      "Interest in industrial systems, sensors, and control systems"
+    ]
+  },
+  {
+    id: "content",
+    title: "Digital Content & Marketing",
+    icon: <MonitorCog size={18} />,
+    points: [
+      "Poster and visual design",
+      "Social media content creation",
+      "Online promotion"
+    ]
+  },
+  {
+    id: "additional",
+    title: "Additional Skills",
+    icon: <SquareTerminal size={18} />,
+    points: [
+      "Creative development (personal projects, portfolio)",
+      "Chess (~1500 Elo, strategic thinking)",
+      "Chess.com account: NickTran11"
+    ]
   }
 ];
 
