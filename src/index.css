@@ -375,7 +375,7 @@ code {
 .hero-photo-only {
   position: relative;
   margin: 0;
-  height: 85vh;
+  height: 500px;
   border-radius: 0;
   border: none;
   overflow: visible;
