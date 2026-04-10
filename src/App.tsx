@@ -274,34 +274,48 @@ export default function App() {
         <section id="about" className="screen-section page-section">
           <motion.div className="content-shell section-stack section-left-clean" {...fadeUp}>
             <div className="section-heading">
-              <span className="section-kicker">About Me</span>
-              <h2>Strategy, systems, and storytelling.</h2>
-            </div>
+  <span className="section-kicker about-kicker">ABOUT ME</span>
+</div>
 
-            <div className="about-grid">
-              <div className="glass-card about-copy">
-                <p>
-                  I come from a mixed background in IT and oil &amp; gas engineering, and I enjoy building things that
-                  feel both useful and memorable. My interests sit at the intersection of networking, cybersecurity,
-                  industrial technology, data-driven thinking, and creative digital presentation.
-                </p>
-                <p>
-                  Football teaches me momentum, awareness, and teamwork. Chess teaches me structure, patience, and
-                  pattern recognition. I bring both into my technical work: move fast when needed, but always think
-                  several steps ahead.
-                </p>
-              </div>
+<div className="about-grid">
+  <div className="glass-card about-copy">
+    <p>
+      I come from a mixed background in IT and oil &amp; gas engineering, and I enjoy building things that
+      feel both useful and memorable. My interests sit at the intersection of networking, cybersecurity,
+      industrial technology, data-driven thinking, and creative digital presentation.
+    </p>
+    <p>
+      Football teaches me momentum, awareness, and teamwork. Chess teaches me structure, patience, and
+      pattern recognition. I bring both into my technical work: move fast when needed, but always think
+      several steps ahead.
+    </p>
+  </div>
 
-              <div className="highlight-grid">
-                {highlights.map((item) => (
-                  <div className="glass-card highlight-card" key={item.title}>
-                    <div className="icon-badge">{item.icon}</div>
-                    <h3>{item.title}</h3>
-                    <p>{item.text}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+  <div className="glass-card about-fields-card">
+    <div className="about-fields-list">
+      {workFields.map((field) => (
+        <button
+          key={field.id}
+          type="button"
+          className={`about-field-item ${selectedField.id === field.id ? "active" : ""}`}
+          onClick={() => setSelectedField(field)}
+        >
+          <span className="icon-badge about-field-icon">{field.icon}</span>
+          <span>{field.title}</span>
+        </button>
+      ))}
+    </div>
+
+    <div className="about-field-detail">
+      <h3>{selectedField.title}</h3>
+      <ul>
+        {selectedField.points.map((point) => (
+          <li key={point}>{point}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</div>
           </motion.div>
         </section>
 
