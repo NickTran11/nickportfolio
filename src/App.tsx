@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import {
+  Brain,
   BriefcaseBusiness,
   ChevronRight,
   Cloud,
