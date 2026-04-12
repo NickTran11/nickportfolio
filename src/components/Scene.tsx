@@ -350,7 +350,7 @@ function SceneContents({ activeFocus, scrollProgress }: { activeFocus: FocusKey;
       </Float>
 
       <Float speed={1.2} rotationIntensity={0.35} floatIntensity={1.1}>
-  <ChessKing position={[8, -0.15, -0.5]} emphasis={emphasis.king} />
+  <ChessKing position={[7, -0.15, -0.5]} emphasis={emphasis.king} />
 </Float>
 
       <GlassOrb position={[-4.8, 1.6, -5]} emphasis={emphasis.glass} color="#d7ffea" />
