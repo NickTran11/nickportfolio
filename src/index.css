@@ -886,3 +886,25 @@ code {
   filter: none;
   background: transparent;
 }
+
+.about-fields-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+/* Header style (clean, not like ABOUT ME) */
+.about-fields-header {
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(151, 255, 208, 0.85);
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+  width: fit-content;
+
+  background: rgba(151, 255, 208, 0.08);
+  border: 1px solid rgba(151, 255, 208, 0.18);
+
+  backdrop-filter: blur(8px);
+}
