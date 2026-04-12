@@ -887,24 +887,25 @@ code {
   background: transparent;
 }
 
-.about-fields-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-/* Header style (clean, not like ABOUT ME) */
 .about-fields-header {
   font-size: 0.85rem;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(151, 255, 208, 0.85);
-  padding: 0.35rem 0.6rem;
-  border-radius: 999px;
-  width: fit-content;
+  color: #9bffd0;
 
-  background: rgba(151, 255, 208, 0.08);
-  border: 1px solid rgba(151, 255, 208, 0.18);
+  position: relative;
+  padding-left: 14px;
+}
 
-  backdrop-filter: blur(8px);
+.about-fields-header::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  background: #30ff9a;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 0 10px rgba(48, 255, 154, 0.6);
 }
