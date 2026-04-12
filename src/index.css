@@ -475,10 +475,36 @@ code {
 }
 
 .about-kicker {
-  font-size: clamp(1.1rem, 2vw, 1.65rem);
+  display: inline-block;
+  margin-left: 18px; /* move right */
+  margin-bottom: 0.2rem;
+  font-size: clamp(1.35rem, 2.6vw, 2.05rem); /* a bit bigger */
   font-weight: 800;
   letter-spacing: 0.28em;
-  margin-bottom: 0.2rem;
+  color: #dfffee;
+  position: relative;
+  background:
+    linear-gradient(
+      115deg,
+      #dfffee 0%,
+      #dfffee 38%,
+      #79ffbf 48%,
+      #dfffee 58%,
+      #dfffee 100%
+    );
+  background-size: 220% 100%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow:
+    0 0 2px rgba(210, 255, 235, 0.95),
+    0 0 8px rgba(75, 255, 170, 0.2),
+    0 0 18px rgba(75, 255, 170, 0.14);
+  filter: drop-shadow(0 0 6px rgba(75, 255, 170, 0.16));
+  animation:
+    welcomeGlow 4s ease-in-out infinite,
+    welcomeSweep 7s ease-in-out infinite alternate;
 }
 
 .section-heading h2 {
