@@ -292,6 +292,11 @@ export default function App() {
     </p>
   </div>
 
+  <div className="about-fields-wrapper">
+  <div className="about-fields-header">
+    Core Expertise
+  </div>
+
   <div className="glass-card about-fields-card">
     <div className="about-fields-list">
       {workFields.map((field) => (
