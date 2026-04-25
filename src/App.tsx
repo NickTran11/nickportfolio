@@ -57,6 +57,60 @@ const skills = [
   "Incident Analysis"
 ];
 
+const skillGroups = [
+  {
+    icon: "🔐",
+    title: "Cybersecurity",
+    text: "Hands-on experience in security analysis, malware investigation, and digital forensics.",
+    label: "Tools & Technologies",
+    tools: ["Wireshark", "Autopsy", "YARA", "Ghidra", "PEStudio", "Process Monitor", "FTK Imager"]
+  },
+  {
+    icon: "🌐",
+    title: "Networking & Infrastructure",
+    text: "Strong foundation in network configuration, troubleshooting, and system environments.",
+    label: "Tools & Technologies",
+    tools: ["Network Administration", "TCP/IP", "Windows", "Linux", "VirtualBox"]
+  },
+  {
+    icon: "💻",
+    title: "Programming & Web",
+    text: "Building technical projects, automation scripts, and interactive web applications.",
+    label: "Tools & Technologies",
+    tools: ["Python", "JavaScript", "TypeScript", "React", "HTML/CSS", "Git/GitHub"]
+  },
+  {
+    icon: "⚙️",
+    title: "IoT & Industrial Tech",
+    text: "Exploring industrial networking and IoT systems with practical implementation.",
+    label: "Tools & Technologies",
+    tools: ["AWS IoT", "ThingSpeak", "SCADA / OT Concepts", "Industrial Networking"]
+  },
+  {
+    icon: "🎨",
+    title: "Digital Content & Communication",
+    text: "Designing engaging technical presentations and communicating complex ideas clearly and effectively.",
+    label: "Skills & Tools",
+    tools: [
+      "CapCut",
+      "Presentation Design",
+      "Public Speaking",
+      "Technical Communication",
+      "Content Creation",
+      "Creative Storytelling",
+      "Poster Design"
+    ],
+    experience: "Demonstrated through Capstone project presentations and live demos at CapCon 2026."
+  },
+  {
+    icon: "🧪",
+    title: "Featured Lab Environment",
+    text: "Hands-on lab setup used for cybersecurity analysis and experimentation.",
+    label: "Lab Setup",
+    tools: ["Kali Linux", "FlareVM", "VirtualBox", "Wireshark", "Autopsy", "Ghidra", "YARA"]
+  }
+];
+
 const workFields = [
   {
     id: "cyber",
