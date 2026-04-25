@@ -84,7 +84,7 @@ const skillGroups = [
     title: "IoT & Industrial Tech",
     text: "Exploring industrial networking and IoT systems with practical implementation.",
     label: "Tools & Technologies",
-    tools: ["AWS IoT", "ThingSpeak", "Embedded Systems (Raspberry Pi Pico 2 W, MicroPython/Python)", "ADC & PWM", "Serial Communication", "IoT Data Transmission", "MQTT/HTTP", "Sensor Integration"]
+    tools: ["AWS IoT", "ThingSpeak", "MQTT/HTTP", "Sensor Integration", "Embedded Systems (Raspberry Pi Pico 2 W, MicroPython/Python)", "ADC & PWM", "Serial Communication", "IoT Data Transmission"]
   },
   {
     icon: "🎨",
@@ -102,7 +102,8 @@ const skillGroups = [
       "Poster Design",
       "Website Design",
       "Marketing Strategy",
-      "Photo Editor"
+      "Photo Editor",
+      "Trends Catcher"
     ],
     experience: "Demonstrated through Capstone project presentations and live demos at CapCon 2026."
   },
