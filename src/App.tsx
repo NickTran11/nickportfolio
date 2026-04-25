@@ -381,35 +381,47 @@ export default function App() {
         </section>
 
         <section id="skills" className="screen-section page-section">
-          <motion.div className="content-shell section-stack section-center-wide" {...fadeUp}>
-            <div className="section-heading center-heading">
-              <span className="section-kicker">Skills / Tools / Tech</span>
-              <h2>My current technical stack.</h2>
-            </div>
+  <motion.div className="content-shell section-stack section-center-wide skills-section-shell" {...fadeUp}>
+    <div className="section-heading center-heading skills-heading">
+      <span className="section-kicker">💻 Skills / Tools / Tech</span>
+      <h2>Cybersecurity, IT &amp; Industrial Tech Skills</h2>
+      <p>
+        I build hands-on experience across cybersecurity, networking, and industrial systems, with a strong focus on
+        real-world labs, analysis, and practical problem solving.
+      </p>
+    </div>
 
-            <div className="skills-wrap glass-card">
-              <div className="skills-intro">
-                <div className="icon-badge large">
-                  <Code2 size={24} />
-                </div>
-                <div>
-                  <h3>Tools I use and concepts I am building on</h3>
-                  <p>
-                    A mix of frontend creation, networking, security analysis, IoT experimentation, and industrial-tech learning.
-                  </p>
-                </div>
-              </div>
-
-              <div className="chip-grid">
-                {skills.map((skill) => (
-                  <span className="skill-chip" key={skill}>
-                    {skill}
-                  </span>
-                ))}
-              </div>
+    <div className="skills-grid-clean">
+      {skillGroups.map((group) => (
+        <article className="glass-card skill-category-card" key={group.title}>
+          <div className="skill-category-top">
+            <span className="skill-emoji">{group.icon}</span>
+            <div>
+              <h3>{group.title}</h3>
+              <p>{group.text}</p>
             </div>
-          </motion.div>
-        </section>
+          </div>
+
+          <div className="skill-tools-label">{group.label}:</div>
+
+          <div className="skill-tools-row">
+            {group.tools.map((tool) => (
+              <span className="skill-chip" key={tool}>
+                {tool}
+              </span>
+            ))}
+          </div>
+
+          {group.experience && (
+            <p className="skill-experience">
+              <strong>Experience:</strong> {group.experience}
+            </p>
+          )}
+        </article>
+      ))}
+    </div>
+  </motion.div>
+</section>
 
         <section id="projects" className="screen-section page-section">
           <motion.div className="content-shell section-stack section-right-offset" {...fadeUp}>
