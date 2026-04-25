@@ -101,7 +101,7 @@ const skillGroups = [
       "Creative Storytelling",
       "Poster Design",
       "Website Design",
-      "Marketing Strategy"
+      "Marketing Strategy",
       "Photo Editor"
     ],
     experience: "Demonstrated through Capstone project presentations and live demos at CapCon 2026."
