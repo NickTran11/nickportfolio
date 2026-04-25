@@ -963,6 +963,18 @@ code {
   .section-heading h2 {
     max-width: 100%;
   }
+
+    .skills-grid-clean {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-heading h2 {
+    font-size: 2rem;
+  }
+
+  .skill-category-top {
+    flex-direction: column;
+  }
 }
 
 .clean-photo {
