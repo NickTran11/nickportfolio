@@ -63,28 +63,28 @@ const skillGroups = [
     title: "Cybersecurity",
     text: "Hands-on experience in security analysis, malware investigation, and digital forensics.",
     label: "Tools & Technologies",
-    tools: ["Wireshark", "Autopsy", "YARA", "Ghidra", "PEStudio", "Process Monitor", "FTK Imager"]
+    tools: ["Wireshark", "Autopsy", "YARA", "Ghidra", "PEStudio", "Process Monitor", "FTK Imager", "Security Onion", "SQL Injection", "Social Engineering"]
   },
   {
     icon: "🌐",
     title: "Networking & Infrastructure",
     text: "Strong foundation in network configuration, troubleshooting, and system environments.",
     label: "Tools & Technologies",
-    tools: ["Network Administration", "TCP/IP", "Windows", "Linux", "VirtualBox"]
+    tools: ["Network Administration", "Port Scanning", "TCP/IP", "pfSense", "Windows Firewall", "FTP", "SSH", "HTTP", "Proxy", "TP-Link Router Config", "Windows Server 2022", "Wireshark"]
   },
   {
     icon: "💻",
     title: "Programming & Web",
     text: "Building technical projects, automation scripts, and interactive web applications.",
     label: "Tools & Technologies",
-    tools: ["Python", "JavaScript", "TypeScript", "React", "HTML/CSS", "Git/GitHub"]
+    tools: ["Python", "JavaScript", "TypeScript", "React", "Vite", "HTML/CSS", "Git/GitHub", "C Language", "PowerShell", "Firebase"]
   },
   {
     icon: "⚙️",
     title: "IoT & Industrial Tech",
     text: "Exploring industrial networking and IoT systems with practical implementation.",
     label: "Tools & Technologies",
-    tools: ["AWS IoT", "ThingSpeak", "SCADA / OT Concepts", "Industrial Networking"]
+    tools: ["AWS IoT", "ThingSpeak", "Embedded Systems (Raspberry Pi Pico 2 W, MicroPython/Python)", "ADC & PWM", "Serial Communication", "IoT Data Transmission", "MQTT/HTTP", "Sensor Integration"]
   },
   {
     icon: "🎨",
@@ -93,12 +93,16 @@ const skillGroups = [
     label: "Skills & Tools",
     tools: [
       "CapCut",
+      "Pixlr",
       "Presentation Design",
       "Public Speaking",
       "Technical Communication",
       "Content Creation",
       "Creative Storytelling",
-      "Poster Design"
+      "Poster Design",
+      "Website Design",
+      "Marketing Strategy"
+      "Photo Editor"
     ],
     experience: "Demonstrated through Capstone project presentations and live demos at CapCon 2026."
   },
@@ -107,7 +111,7 @@ const skillGroups = [
     title: "Featured Lab Environment",
     text: "Hands-on lab setup used for cybersecurity analysis and experimentation.",
     label: "Lab Setup",
-    tools: ["Kali Linux", "FlareVM", "VirtualBox", "Wireshark", "Autopsy", "Ghidra", "YARA"]
+    tools: ["Kali Linux", "FlareVM", "VirtualBox", "VMware", "Debian VM", "Ubuntu VM", "Metaploitable VM", "Apache2", "LinPEAS"]
   }
 ];
 
