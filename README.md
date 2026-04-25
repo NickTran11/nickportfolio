@@ -1,4 +1,4 @@
-# Nick Tran Cinematic Portfolio V2 Hi
+# Nick Tran Cinematic Portfolio V2
 
 This version adds:
 - full-screen landing page with no text
