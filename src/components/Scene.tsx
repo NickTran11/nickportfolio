@@ -249,225 +249,102 @@ function LightningBolt({
 }) {
   const group = useRef<THREE.Group>(null);
 
-  const makeShape = (points: [number, number][]) => {
-    const s = new THREE.Shape();
-    s.moveTo(points[0][0], points[0][1]);
-    points.slice(1).forEach(([x, y]) => s.lineTo(x, y));
-    s.lineTo(points[0][0], points[0][1]);
-    return s;
-  };
-
-  const fullBolt = makeShape([
-    [0.22, 1.8],
-    [-0.68, 0.08],
-    [-0.05, 0.08],
-    [-0.55, -1.75],
-    [0.72, -0.16],
-    [0.12, -0.16],
-    [0.55, 0.62]
-  ]);
-
-  const topCrystalLeft = makeShape([
-    [0.22, 1.8],
-    [-0.68, 0.08],
-    [-0.18, 0.08],
-    [0.04, 1.25]
-  ]);
-
-  const topCrystalCenter = makeShape([
-    [0.22, 1.8],
-    [0.04, 1.25],
-    [-0.18, 0.08],
-    [0.55, 0.62]
-  ]);
-
-  const topCrystalRight = makeShape([
-    [0.22, 1.8],
-    [0.55, 0.62],
-    [0.28, 0.18],
-    [0.04, 1.25]
-  ]);
-
-  const silverBridge = makeShape([
-    [-0.18, 0.08],
-    [0.55, 0.62],
-    [0.12, -0.16],
-    [-0.32, -0.16]
-  ]);
-
-  const bottomLeft = makeShape([
-    [-0.32, -0.16],
-    [-0.55, -1.75],
-    [0.04, -0.62],
-    [0.12, -0.16]
-  ]);
-
-  const bottomRight = makeShape([
-    [0.12, -0.16],
-    [0.72, -0.16],
-    [-0.55, -1.75],
-    [0.04, -0.62]
-  ]);
-
-  const edgeMaterial = (
-    <meshPhysicalMaterial
-      color="#dfffee"
-      metalness={1}
-      roughness={0.015}
-      clearcoat={1}
-      clearcoatRoughness={0.01}
-      transparent
-      opacity={0.82}
-      side={THREE.DoubleSide}
-    />
-  );
+  // Sharper, more angular bolt shape matching screenshot 2
+  const boltShape = new THREE.Shape();
+  boltShape.moveTo(0.22, 1.7);
+  boltShape.lineTo(-0.58, 0.05);
+  boltShape.lineTo(-0.02, 0.05);
+  boltShape.lineTo(-0.52, -1.65);
+  boltShape.lineTo(0.68, -0.08);
+  boltShape.lineTo(0.08, -0.08);
+  boltShape.lineTo(0.52, 0.72);
+  boltShape.lineTo(0.22, 1.7);
 
   useFrame((state) => {
     if (!group.current) return;
     group.current.position.y =
-      position[1] + Math.sin(state.clock.elapsedTime * 1.1) * 0.045;
+      position[1] + Math.sin(state.clock.elapsedTime * 1.15) * 0.05;
     group.current.rotation.z =
-      rotation[2] + Math.sin(state.clock.elapsedTime * 0.65) * 0.018;
+      rotation[2] + Math.sin(state.clock.elapsedTime * 0.7) * 0.02;
   });
 
   return (
     <group
       ref={group}
       position={position}
-      rotation={rotation}
-      scale={[1.12, 1.35, 0.72]}
+      // Tilt ~25 degrees to match screenshot 2's angled presentation
+      rotation={[rotation[0], rotation[1] + 0.0, rotation[2] - 0.44]}
+      scale={[1.25, 1.4, 1]}
     >
-      {/* transparent crystal body */}
-      <mesh rotation={[0, 0.08, 0]}>
+      {/* Main extruded body — deep bevel for crystal prism look */}
+      <mesh castShadow>
         <extrudeGeometry
           args={[
-            fullBolt,
+            boltShape,
             {
-              depth: 0.16,
+              depth: 0.55,
               bevelEnabled: true,
-              bevelSize: 0.035,
-              bevelThickness: 0.035,
-              bevelSegments: 5
+              bevelSize: 0.09,
+              bevelThickness: 0.09,
+              bevelSegments: 6
             }
           ]}
         />
         <MeshTransmissionMaterial
-          color="#55f7b4"
-          transmission={0.88}
-          thickness={0.62}
-          roughness={0.008}
-          chromaticAberration={0.045}
+          color="#30f0a0"
+          transmission={0.82}
+          thickness={0.7}
+          roughness={0.0}
+          chromaticAberration={0.06}
           backside
-          samples={10}
-          distortion={0.025}
-          distortionScale={0.12}
-          temporalDistortion={0.04}
+          backsideThickness={0.4}
+          samples={12}
+          distortion={0.02}
+          distortionScale={0.1}
+          temporalDistortion={0.05}
+          envMapIntensity={2.5}
+          ior={1.55}
         />
       </mesh>
 
-      {/* front crystal facets */}
-      <mesh position={[0, 0, 0.17]}>{/* top left green face */}
-        <shapeGeometry args={[topCrystalLeft]} />
+      {/* Front face highlight — bright glassy sheen */}
+      <mesh position={[0, 0, 0.64]}>
+        <shapeGeometry args={[boltShape]} />
         <meshPhysicalMaterial
-          color="#35e99c"
-          emissive="#00c878"
-          emissiveIntensity={0.18}
-          metalness={0.65}
-          roughness={0.018}
-          clearcoat={1}
-          clearcoatRoughness={0.01}
-          transparent
-          opacity={0.58}
-          side={THREE.DoubleSide}
-        />
-      </mesh>
-
-      <mesh position={[0, 0, 0.18]}>
-        <shapeGeometry args={[topCrystalCenter]} />
-        <meshPhysicalMaterial
-          color="#91ffd0"
-          emissive="#54ffc0"
+          color="#78ffe0"
+          emissive="#00ffaa"
           emissiveIntensity={0.12}
-          metalness={0.78}
-          roughness={0.012}
+          metalness={0.3}
+          roughness={0.0}
           clearcoat={1}
+          clearcoatRoughness={0.0}
           transparent
-          opacity={0.42}
-          side={THREE.DoubleSide}
+          opacity={0.35}
+          side={THREE.FrontSide}
         />
       </mesh>
 
-      <mesh position={[0, 0, 0.19]}>
-        <shapeGeometry args={[topCrystalRight]} />
-        <meshPhysicalMaterial
-          color="#dfffee"
-          metalness={1}
-          roughness={0.01}
-          clearcoat={1}
-          transparent
-          opacity={0.55}
-          side={THREE.DoubleSide}
-        />
-      </mesh>
-
-      {/* silver middle bridge */}
-      <mesh position={[0, 0, 0.205]}>
-        <shapeGeometry args={[silverBridge]} />
-        <meshPhysicalMaterial
-          color="#d8fff0"
-          emissive="#c8ffee"
-          emissiveIntensity={0.08}
-          metalness={1}
-          roughness={0.012}
-          clearcoat={1}
-          clearcoatRoughness={0.005}
-          transparent
-          opacity={0.86}
-          side={THREE.DoubleSide}
-        />
-      </mesh>
-
-      {/* lower crystal facets */}
-      <mesh position={[0, 0, 0.18]}>
-        <shapeGeometry args={[bottomLeft]} />
-        <meshPhysicalMaterial
-          color="#1ecf7a"
-          emissive="#00a866"
-          emissiveIntensity={0.12}
-          metalness={0.72}
-          roughness={0.016}
-          clearcoat={1}
-          transparent
-          opacity={0.52}
-          side={THREE.DoubleSide}
-        />
-      </mesh>
-
-      <mesh position={[0, 0, 0.19]}>
-        <shapeGeometry args={[bottomRight]} />
-        <meshPhysicalMaterial
-          color="#9dffd1"
-          metalness={0.92}
-          roughness={0.012}
-          clearcoat={1}
-          transparent
-          opacity={0.46}
-          side={THREE.DoubleSide}
-        />
-      </mesh>
-
-      {/* bright thin edge lines */}
-      <mesh position={[0.015, 0, 0.24]} scale={[1.015, 1.015, 1]}>
-        <shapeGeometry args={[fullBolt]} />
-        {edgeMaterial}
-      </mesh>
-
-      <lineSegments position={[0, 0, 0.255]}>
-        <edgesGeometry args={[new THREE.ShapeGeometry(fullBolt)]} />
-        <lineBasicMaterial color="#caffea" transparent opacity={0.9} />
-      </lineSegments>
-
-      <pointLight position={[0, 0.1, 0.75]} intensity={2.8} color="#00ff99" distance={4} />
+      {/* Strong key light from upper-left to match screenshot 2 lighting */}
+      <pointLight
+        position={[-1.2, 2.0, 1.5]}
+        intensity={4.5}
+        color="#ffffff"
+        distance={6}
+      />
+      {/* Fill light — green tint underneath */}
+      <pointLight
+        position={[1.0, -1.5, 1.0]}
+        intensity={2.0}
+        color="#00ff99"
+        distance={5}
+      />
+      {/* Rim light for the glowing edge */}
+      <pointLight
+        position={[0, 0, -1.0]}
+        intensity={1.2}
+        color="#20ffaa"
+        distance={4}
+      />
     </group>
   );
 }
