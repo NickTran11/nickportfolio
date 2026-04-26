@@ -388,13 +388,8 @@ export default function App() {
         <section id="skills" className="screen-section page-section">
   <motion.div className="content-shell section-stack section-center-wide skills-section-shell" {...fadeUp}>
     <div className="section-heading center-heading skills-heading">
-      <span className="section-kicker">💻 Skills / Tools / Tech</span>
-      <h2>Cybersecurity, IT &amp; Industrial Tech Skills</h2>
-      <p>
-        I build hands-on experience across cybersecurity, networking, and industrial systems, with a strong focus on
-        real-world labs, analysis, and practical problem solving.
-      </p>
-    </div>
+  <h2 className="skills-glow-title">SKILLS / TOOLS / TECH</h2>
+</div>
 
     <div className="skills-grid-clean">
       {skillGroups.map((group) => (
