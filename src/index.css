@@ -544,6 +544,43 @@ code {
     welcomeSweep 7s ease-in-out infinite alternate;
 }
 
+.projects-glow-title {
+  margin: 0;
+  max-width: none;
+  font-size: clamp(2.6rem, 5.2vw, 5rem);
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: #dfffee;
+  text-transform: uppercase;
+
+  background:
+    linear-gradient(
+      115deg,
+      #dfffee 0%,
+      #dfffee 38%,
+      #79ffbf 48%,
+      #dfffee 58%,
+      #dfffee 100%
+    );
+  background-size: 220% 100%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  text-shadow:
+    0 0 2px rgba(210, 255, 235, 0.95),
+    0 0 8px rgba(75, 255, 170, 0.2),
+    0 0 18px rgba(75, 255, 170, 0.14);
+
+  filter: drop-shadow(0 0 6px rgba(75, 255, 170, 0.16));
+
+  animation:
+    welcomeGlow 4s ease-in-out infinite,
+    welcomeSweep 7s ease-in-out infinite alternate;
+}
+
 .section-heading h2 {
   margin: 0;
   font-size: clamp(1.8rem, 3.2vw, 3rem);
