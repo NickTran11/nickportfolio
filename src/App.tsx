@@ -425,41 +425,60 @@ export default function App() {
 </section>
 
         <section id="projects" className="screen-section page-section">
-          <motion.div className="content-shell section-stack section-right-offset" {...fadeUp}>
-            <div className="section-heading">
-  <h2 className="projects-glow-title">PROJECTS</h2>
-</div>
+  <motion.div className="content-shell section-stack section-right-offset projects-chess-shell" {...fadeUp}>
+    <div className="section-heading">
+      <h2 className="projects-glow-title">PROJECTS</h2>
+    </div>
 
-            <div className="project-grid">
-              {projects.map((project) => (
-                <article className="glass-card project-card" key={project.title}>
-                  <div className="project-top">
-                    <span className="mini-chip">{project.tag}</span>
-                    <BriefcaseBusiness size={18} />
-                  </div>
+    <div className="projects-chess-layout">
+      <div className="projects-board">
+        {projects.map((project, index) => (
+          <button
+            key={project.title}
+            type="button"
+            className={`project-square ${selectedProject.title === project.title ? "active" : ""} ${
+              index % 2 === 0 ? "green-square" : "silver-square"
+            }`}
+            onClick={() => setSelectedProject(project)}
+          >
+            <span className="project-square-number">0{index + 1}</span>
+            <span className="project-square-title">{project.title}</span>
+            <span className="project-square-tag">{project.tag}</span>
+          </button>
+        ))}
+      </div>
 
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
+      <article className="glass-card project-detail-panel">
+        <div className="project-top">
+          <span className="mini-chip">{selectedProject.tag}</span>
+          <BriefcaseBusiness size={18} />
+        </div>
 
-                  <div className="tech-row">
-                    {project.tech.map((item) => (
-                      <span key={item}>{item}</span>
-                    ))}
-                  </div>
+        <h3>{selectedProject.title}</h3>
+        <p>{selectedProject.description}</p>
 
-                  <div className="project-links">
-                    <a href={project.link} target={project.link.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
-                      <ExternalLink size={16} /> View
-                    </a>
-                    <a href={project.github} target="_blank" rel="noreferrer">
-                      <Github size={16} /> Code
-                    </a>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </motion.div>
-        </section>
+        <div className="tech-row">
+          {selectedProject.tech.map((item) => (
+            <span key={item}>{item}</span>
+          ))}
+        </div>
+
+        <div className="project-links">
+          <a
+            href={selectedProject.link}
+            target={selectedProject.link.startsWith("http") ? "_blank" : undefined}
+            rel="noreferrer"
+          >
+            <ExternalLink size={16} /> View
+          </a>
+          <a href={selectedProject.github} target="_blank" rel="noreferrer">
+            <Github size={16} /> Code
+          </a>
+        </div>
+      </article>
+    </div>
+  </motion.div>
+</section>
 
         <section id="resume" className="screen-section page-section">
           <motion.div className="content-shell section-stack section-left-clean" {...fadeUp}>
