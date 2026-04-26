@@ -426,9 +426,8 @@ export default function App() {
         <section id="projects" className="screen-section page-section">
           <motion.div className="content-shell section-stack section-right-offset" {...fadeUp}>
             <div className="section-heading">
-              <span className="section-kicker">Projects</span>
-              <h2>Selected work and experiments.</h2>
-            </div>
+  <h2 className="projects-glow-title">PROJECTS</h2>
+</div>
 
             <div className="project-grid">
               {projects.map((project) => (
