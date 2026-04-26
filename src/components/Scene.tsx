@@ -249,16 +249,16 @@ function LightningBolt({
 }) {
   const group = useRef<THREE.Group>(null);
 
-  // Sharper, more angular bolt shape matching screenshot 2
+  // Slim, sharp, elongated bolt — matching screenshot 2 proportions exactly
+  // Top tip is upper-right, bottom tip is lower-left, creating the lean
   const boltShape = new THREE.Shape();
-  boltShape.moveTo(0.22, 1.7);
-  boltShape.lineTo(-0.58, 0.05);
-  boltShape.lineTo(-0.02, 0.05);
-  boltShape.lineTo(-0.52, -1.65);
-  boltShape.lineTo(0.68, -0.08);
-  boltShape.lineTo(0.08, -0.08);
-  boltShape.lineTo(0.52, 0.72);
-  boltShape.lineTo(0.22, 1.7);
+  boltShape.moveTo(0.28, 1.85);   // top-right sharp tip
+  boltShape.lineTo(-0.52, 0.12);  // left side going down
+  boltShape.lineTo(0.04, 0.12);   // notch inner top-left
+  boltShape.lineTo(-0.42, -1.75); // bottom-left sharp tip
+  boltShape.lineTo(0.52, -0.14);  // right side going up
+  boltShape.lineTo(-0.04, -0.14); // notch inner bottom-right
+  boltShape.lineTo(0.28, 1.85);   // back to top
 
   useFrame((state) => {
     if (!group.current) return;
@@ -272,78 +272,171 @@ function LightningBolt({
     <group
       ref={group}
       position={position}
-      // Tilt ~25 degrees to match screenshot 2's angled presentation
-      rotation={[rotation[0], rotation[1] + 0.0, rotation[2] - 0.44]}
-      scale={[1.25, 1.4, 1]}
+      rotation={[
+        rotation[0] + 0.08,   // very slight forward tilt
+        rotation[1] + 0.18,   // slight y rotation to show the thin edge/depth
+        rotation[2] + 0.32    // ~18 degrees tilt — top leans right, matches screenshot 2
+      ]}
+      scale={[1.0, 1.35, 1]}
     >
-      {/* Main extruded body — deep bevel for crystal prism look */}
-      <mesh castShadow>
+      {/* 
+        Main crystal body — thin depth is critical.
+        Screenshot 2 shows a thin shard, not a thick block.
+        Large bevel relative to depth creates the sharp chamfered edges 
+        that catch light and create those distinct angled faces.
+      */}
+      <mesh castShadow receiveShadow>
         <extrudeGeometry
           args={[
             boltShape,
             {
-              depth: 0.55,
+              depth: 0.22,          // THIN — screenshot 2 is a slim crystal shard
               bevelEnabled: true,
-              bevelSize: 0.09,
-              bevelThickness: 0.09,
-              bevelSegments: 6
+              bevelSize: 0.07,      // Large bevel relative to depth = sharp crystal faces
+              bevelThickness: 0.07,
+              bevelSegments: 8      // Smooth bevel curves
             }
           ]}
         />
         <MeshTransmissionMaterial
-          color="#30f0a0"
-          transmission={0.82}
-          thickness={0.7}
-          roughness={0.0}
-          chromaticAberration={0.06}
-          backside
-          backsideThickness={0.4}
-          samples={12}
-          distortion={0.02}
-          distortionScale={0.1}
-          temporalDistortion={0.05}
-          envMapIntensity={2.5}
-          ior={1.55}
+          color="#38eeaa"           // Mint green, slightly cool
+          transmission={0.88}       // Very glassy/transparent
+          thickness={0.35}          // Controls internal refraction depth
+          roughness={0.0}           // Perfectly smooth glass
+          chromaticAberration={0.04}
+          backside={true}
+          backsideThickness={0.2}
+          samples={16}              // High quality transmission
+          distortion={0.0}          // No distortion — clean crystal
+          distortionScale={0.0}
+          temporalDistortion={0.0}
+          envMapIntensity={3.0}
+          ior={1.8}                 // High IOR — dense glass, bends light strongly
+          anisotropy={0.1}
         />
       </mesh>
 
-      {/* Front face highlight — bright glassy sheen */}
-      <mesh position={[0, 0, 0.64]}>
-        <shapeGeometry args={[boltShape]} />
+      {/* 
+        The critical grey/silver notch face seen in screenshot 2.
+        The middle "step" of the bolt has a distinct silver-grey face
+        that's clearly visible — this is the bevel face at the notch catching light.
+        We recreate it as a separate mesh at the notch position.
+      */}
+      <mesh position={[0.0, -0.01, 0.11]}>
+        <shapeGeometry args={[(() => {
+          const notch = new THREE.Shape();
+          notch.moveTo(0.04, 0.12);
+          notch.lineTo(0.52, -0.14);  
+          notch.lineTo(-0.04, -0.14);
+          notch.lineTo(-0.52, 0.12);
+          notch.lineTo(0.04, 0.12);
+          return notch;
+        })()]} />
         <meshPhysicalMaterial
-          color="#78ffe0"
-          emissive="#00ffaa"
-          emissiveIntensity={0.12}
-          metalness={0.3}
-          roughness={0.0}
-          clearcoat={1}
+          color="#b0c8be"           // Cool grey-silver, matches screenshot 2 notch
+          metalness={0.85}
+          roughness={0.08}
+          clearcoat={1.0}
           clearcoatRoughness={0.0}
           transparent
-          opacity={0.35}
+          opacity={0.82}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+
+      {/*
+        Upper blade face — bright mint highlight.
+        In screenshot 2 the upper portion of the front face
+        catches bright light and appears as bright aqua-green.
+      */}
+      <mesh position={[0, 0, 0.22]}>
+        <shapeGeometry args={[(() => {
+          const upper = new THREE.Shape();
+          upper.moveTo(0.28, 1.85);
+          upper.lineTo(-0.52, 0.12);
+          upper.lineTo(0.04, 0.12);
+          upper.lineTo(0.28, 1.85);
+          return upper;
+        })()]} />
+        <meshPhysicalMaterial
+          color="#50ffb8"
+          emissive="#00ff99"
+          emissiveIntensity={0.08}
+          metalness={0.2}
+          roughness={0.0}
+          clearcoat={1.0}
+          clearcoatRoughness={0.0}
+          transparent
+          opacity={0.28}
           side={THREE.FrontSide}
         />
       </mesh>
 
-      {/* Strong key light from upper-left to match screenshot 2 lighting */}
+      {/*
+        Lower blade face — slightly darker green.
+        The bottom half in screenshot 2 is a touch darker/deeper.
+      */}
+      <mesh position={[0, 0, 0.22]}>
+        <shapeGeometry args={[(() => {
+          const lower = new THREE.Shape();
+          lower.moveTo(-0.04, -0.14);
+          lower.lineTo(0.52, -0.14);
+          lower.lineTo(-0.42, -1.75);
+          lower.lineTo(-0.04, -0.14);
+          return lower;
+        })()]} />
+        <meshPhysicalMaterial
+          color="#30cc88"
+          metalness={0.3}
+          roughness={0.0}
+          clearcoat={1.0}
+          clearcoatRoughness={0.0}
+          transparent
+          opacity={0.22}
+          side={THREE.FrontSide}
+        />
+      </mesh>
+
+      {/* 
+        Lighting rig — screenshot 2 has a strong light from upper-left
+        creating a bright face on the upper blade,
+        and the silver notch is lit more neutrally/coolly.
+      */}
+
+      {/* Strong white key light — upper left, creates bright face on upper blade */}
       <pointLight
-        position={[-1.2, 2.0, 1.5]}
-        intensity={4.5}
+        position={[-2.0, 3.0, 2.0]}
+        intensity={5.5}
+        color="#e8fff5"
+        distance={9}
+        decay={2}
+      />
+
+      {/* Cool fill from the right to illuminate the lower blade */}
+      <pointLight
+        position={[2.5, -1.0, 1.5]}
+        intensity={2.2}
+        color="#40ffaa"
+        distance={7}
+        decay={2}
+      />
+
+      {/* Back light — makes it glow from behind for translucency */}
+      <pointLight
+        position={[0.5, 0.2, -2.0]}
+        intensity={1.8}
+        color="#00ffaa"
+        distance={5}
+        decay={2}
+      />
+
+      {/* Subtle warm top fill */}
+      <pointLight
+        position={[0, 2.5, 1.0]}
+        intensity={1.2}
         color="#ffffff"
         distance={6}
-      />
-      {/* Fill light — green tint underneath */}
-      <pointLight
-        position={[1.0, -1.5, 1.0]}
-        intensity={2.0}
-        color="#00ff99"
-        distance={5}
-      />
-      {/* Rim light for the glowing edge */}
-      <pointLight
-        position={[0, 0, -1.0]}
-        intensity={1.2}
-        color="#20ffaa"
-        distance={4}
+        decay={2}
       />
     </group>
   );
