@@ -250,74 +250,95 @@ function LightningBolt({
   const group = useRef<THREE.Group>(null);
 
   const shape = new THREE.Shape();
-  shape.moveTo(-0.18, 1.35);
-  shape.lineTo(0.55, 0.28);
-  shape.lineTo(0.12, 0.28);
-  shape.lineTo(0.36, -1.25);
-  shape.lineTo(-0.58, -0.05);
-  shape.lineTo(-0.13, -0.05);
-  shape.lineTo(-0.18, 1.35);
+  shape.moveTo(0.18, 1.55);
+  shape.lineTo(-0.62, 0.05);
+  shape.lineTo(-0.08, 0.05);
+  shape.lineTo(-0.42, -1.45);
+  shape.lineTo(0.68, -0.18);
+  shape.lineTo(0.12, -0.18);
+  shape.lineTo(0.48, 0.72);
+  shape.lineTo(0.18, 1.55);
 
   useFrame((state) => {
     if (!group.current) return;
-    group.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 1.2) * 0.08;
-    group.current.rotation.z = rotation[2] + Math.sin(state.clock.elapsedTime * 0.7) * 0.04;
+    group.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 1.2) * 0.06;
+    group.current.rotation.z = rotation[2] + Math.sin(state.clock.elapsedTime * 0.7) * 0.025;
   });
 
   return (
-    <group ref={group} position={position} rotation={rotation} scale={1.25}>
+    <group ref={group} position={position} rotation={rotation} scale={1.35}>
       <mesh>
         <extrudeGeometry
           args={[
             shape,
             {
-              depth: 0.16,
+              depth: 0.22,
               bevelEnabled: true,
-              bevelSize: 0.055,
-              bevelThickness: 0.045,
+              bevelSize: 0.075,
+              bevelThickness: 0.06,
+              bevelSegments: 5
+            }
+          ]}
+        />
+        <meshPhysicalMaterial
+          color="#58f0b0"
+          emissive="#00c878"
+          emissiveIntensity={0.45}
+          metalness={0.55}
+          roughness={0.04}
+          clearcoat={1}
+          clearcoatRoughness={0.015}
+          reflectivity={1}
+          transmission={0.35}
+          thickness={0.35}
+          transparent
+          opacity={0.88}
+        />
+      </mesh>
+
+      <mesh scale={0.82} position={[0.04, 0.02, 0.14]}>
+        <extrudeGeometry
+          args={[
+            shape,
+            {
+              depth: 0.035,
+              bevelEnabled: true,
+              bevelSize: 0.025,
+              bevelThickness: 0.018,
               bevelSegments: 3
             }
           ]}
         />
         <meshPhysicalMaterial
-          color="#8dffd0"
-          emissive="#00ff88"
-          emissiveIntensity={0.75}
-          metalness={0.95}
-          roughness={0.08}
+          color="#dfffee"
+          emissive="#9dffd1"
+          emissiveIntensity={0.15}
+          metalness={0.9}
+          roughness={0.025}
           clearcoat={1}
-          clearcoatRoughness={0.04}
-          reflectivity={1}
+          clearcoatRoughness={0.01}
+          transparent
+          opacity={0.5}
         />
       </mesh>
 
-      <mesh scale={1.04} position={[0, 0, 0.11]}>
+      <mesh scale={1.08} position={[0, 0, -0.045]}>
         <extrudeGeometry
           args={[
             shape,
             {
-              depth: 0.025,
+              depth: 0.035,
               bevelEnabled: true,
-              bevelSize: 0.025,
-              bevelThickness: 0.015,
-              bevelSegments: 2
+              bevelSize: 0.04,
+              bevelThickness: 0.02,
+              bevelSegments: 3
             }
           ]}
         />
-        <meshPhysicalMaterial
-          color="#eafff4"
-          emissive="#7dffc2"
-          emissiveIntensity={0.25}
-          metalness={1}
-          roughness={0.05}
-          clearcoat={1}
-          clearcoatRoughness={0.02}
-          transparent
-          opacity={0.55}
-        />
+        <meshBasicMaterial color="#00ff95" transparent opacity={0.18} />
       </mesh>
 
-      <pointLight position={[0, 0.1, 0.7]} intensity={2.2} color="#00ff88" distance={3.2} />
+      <pointLight position={[0, 0.1, 0.75]} intensity={3.4} color="#00ff95" distance={4} />
     </group>
   );
 }
