@@ -249,96 +249,155 @@ function LightningBolt({
 }) {
   const group = useRef<THREE.Group>(null);
 
-  const shape = new THREE.Shape();
-  shape.moveTo(0.18, 1.55);
-  shape.lineTo(-0.62, 0.05);
-  shape.lineTo(-0.08, 0.05);
-  shape.lineTo(-0.42, -1.45);
-  shape.lineTo(0.68, -0.18);
-  shape.lineTo(0.12, -0.18);
-  shape.lineTo(0.48, 0.72);
-  shape.lineTo(0.18, 1.55);
+  const outline = new THREE.Shape();
+  outline.moveTo(0.18, 1.65);
+  outline.lineTo(-0.62, 0.08);
+  outline.lineTo(-0.08, 0.08);
+  outline.lineTo(-0.48, -1.55);
+  outline.lineTo(0.62, -0.12);
+  outline.lineTo(0.1, -0.12);
+  outline.lineTo(0.44, 0.62);
+  outline.lineTo(0.18, 1.65);
+
+  const topLeft = new THREE.Shape();
+  topLeft.moveTo(0.18, 1.65);
+  topLeft.lineTo(-0.62, 0.08);
+  topLeft.lineTo(-0.08, 0.08);
+  topLeft.lineTo(0.44, 0.62);
+  topLeft.lineTo(0.18, 1.65);
+
+  const topInner = new THREE.Shape();
+  topInner.moveTo(0.18, 1.65);
+  topInner.lineTo(0.44, 0.62);
+  topInner.lineTo(-0.08, 0.08);
+  topInner.lineTo(0.03, 0.85);
+  topInner.lineTo(0.18, 1.65);
+
+  const middleSilver = new THREE.Shape();
+  middleSilver.moveTo(-0.08, 0.08);
+  middleSilver.lineTo(0.44, 0.62);
+  middleSilver.lineTo(0.1, -0.12);
+  middleSilver.lineTo(-0.3, -0.12);
+  middleSilver.lineTo(-0.08, 0.08);
+
+  const bottomLeft = new THREE.Shape();
+  bottomLeft.moveTo(-0.3, -0.12);
+  bottomLeft.lineTo(-0.48, -1.55);
+  bottomLeft.lineTo(0.1, -0.12);
+  bottomLeft.lineTo(-0.3, -0.12);
+
+  const bottomRight = new THREE.Shape();
+  bottomRight.moveTo(0.1, -0.12);
+  bottomRight.lineTo(0.62, -0.12);
+  bottomRight.lineTo(-0.48, -1.55);
+  bottomRight.lineTo(0.1, -0.12);
 
   useFrame((state) => {
     if (!group.current) return;
-    group.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 1.2) * 0.06;
-    group.current.rotation.z = rotation[2] + Math.sin(state.clock.elapsedTime * 0.7) * 0.025;
+    group.current.position.y =
+      position[1] + Math.sin(state.clock.elapsedTime * 1.15) * 0.05;
+    group.current.rotation.z =
+      rotation[2] + Math.sin(state.clock.elapsedTime * 0.7) * 0.02;
   });
 
   return (
-    <group ref={group} position={position} rotation={rotation} scale={1.35}>
+    <group ref={group} position={position} rotation={rotation} scale={[1.15, 1.28, 1]}>
       <mesh>
         <extrudeGeometry
           args={[
-            shape,
+            outline,
             {
-              depth: 0.22,
+              depth: 0.08,
               bevelEnabled: true,
-              bevelSize: 0.075,
-              bevelThickness: 0.06,
-              bevelSegments: 5
+              bevelSize: 0.035,
+              bevelThickness: 0.035,
+              bevelSegments: 4
             }
           ]}
         />
-        <meshPhysicalMaterial
-          color="#58f0b0"
-          emissive="#00c878"
-          emissiveIntensity={0.45}
-          metalness={0.55}
-          roughness={0.04}
-          clearcoat={1}
-          clearcoatRoughness={0.015}
-          reflectivity={1}
-          transmission={0.35}
-          thickness={0.35}
-          transparent
-          opacity={0.88}
+        <MeshTransmissionMaterial
+          color="#38f5a5"
+          transmission={0.72}
+          thickness={0.45}
+          roughness={0.015}
+          chromaticAberration={0.035}
+          backside
+          samples={8}
+          distortion={0.04}
+          distortionScale={0.15}
+          temporalDistortion={0.08}
         />
       </mesh>
 
-      <mesh scale={0.82} position={[0.04, 0.02, 0.14]}>
-        <extrudeGeometry
-          args={[
-            shape,
-            {
-              depth: 0.035,
-              bevelEnabled: true,
-              bevelSize: 0.025,
-              bevelThickness: 0.018,
-              bevelSegments: 3
-            }
-          ]}
-        />
+      <mesh position={[0, 0, 0.09]}>
+        <shapeGeometry args={[topLeft]} />
         <meshPhysicalMaterial
-          color="#dfffee"
-          emissive="#9dffd1"
-          emissiveIntensity={0.15}
-          metalness={0.9}
+          color="#42f2aa"
+          emissive="#00ff8a"
+          emissiveIntensity={0.18}
+          metalness={0.55}
           roughness={0.025}
           clearcoat={1}
           clearcoatRoughness={0.01}
           transparent
+          opacity={0.58}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+
+      <mesh position={[0, 0, 0.095]}>
+        <shapeGeometry args={[topInner]} />
+        <meshPhysicalMaterial
+          color="#bfffe5"
+          metalness={0.85}
+          roughness={0.018}
+          clearcoat={1}
+          transparent
+          opacity={0.42}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+
+      <mesh position={[0, 0, 0.105]}>
+        <shapeGeometry args={[middleSilver]} />
+        <meshPhysicalMaterial
+          color="#d7fff0"
+          metalness={1}
+          roughness={0.02}
+          clearcoat={1}
+          transparent
+          opacity={0.72}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+
+      <mesh position={[0, 0, 0.1]}>
+        <shapeGeometry args={[bottomLeft]} />
+        <meshPhysicalMaterial
+          color="#34d88d"
+          metalness={0.65}
+          roughness={0.025}
+          clearcoat={1}
+          transparent
           opacity={0.5}
+          side={THREE.DoubleSide}
         />
       </mesh>
 
-      <mesh scale={1.08} position={[0, 0, -0.045]}>
-        <extrudeGeometry
-          args={[
-            shape,
-            {
-              depth: 0.035,
-              bevelEnabled: true,
-              bevelSize: 0.04,
-              bevelThickness: 0.02,
-              bevelSegments: 3
-            }
-          ]}
+      <mesh position={[0, 0, 0.11]}>
+        <shapeGeometry args={[bottomRight]} />
+        <meshPhysicalMaterial
+          color="#9dffd1"
+          metalness={0.9}
+          roughness={0.018}
+          clearcoat={1}
+          transparent
+          opacity={0.48}
+          side={THREE.DoubleSide}
         />
-        <meshBasicMaterial color="#00ff95" transparent opacity={0.18} />
       </mesh>
 
-      <pointLight position={[0, 0.1, 0.75]} intensity={3.4} color="#00ff95" distance={4} />
+      <pointLight position={[0, 0.05, 0.5]} intensity={1.8} color="#00ff99" distance={3.5} />
     </group>
   );
 }
