@@ -1120,6 +1120,18 @@ code {
   .skill-category-top {
     flex-direction: column;
   }
+
+  .projects-chess-layout {
+  grid-template-columns: 1fr;
+}
+
+.projects-board {
+  grid-template-columns: 1fr;
+}
+
+.project-square {
+  min-height: 120px;
+}
 }
 
 .clean-photo {
