@@ -240,6 +240,54 @@ function Board({
   );
 }
 
+function LightningBolt({
+  position,
+  rotation = [0, 0, 0]
+}: {
+  position: [number, number, number];
+  rotation?: [number, number, number];
+}) {
+  const group = useRef<THREE.Group>(null);
+
+  const shape = new THREE.Shape();
+  shape.moveTo(-0.25, 1.15);
+  shape.lineTo(0.55, 1.15);
+  shape.lineTo(0.12, 0.18);
+  shape.lineTo(0.68, 0.18);
+  shape.lineTo(-0.42, -1.25);
+  shape.lineTo(-0.12, -0.32);
+  shape.lineTo(-0.62, -0.32);
+  shape.lineTo(-0.25, 1.15);
+
+  useFrame((state) => {
+    if (!group.current) return;
+    group.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 1.2) * 0.08;
+    group.current.rotation.z = rotation[2] + Math.sin(state.clock.elapsedTime * 0.7) * 0.06;
+  });
+
+  return (
+    <group ref={group} position={position} rotation={rotation} scale={1.15}>
+      <mesh>
+        <extrudeGeometry args={[shape, { depth: 0.12, bevelEnabled: true, bevelSize: 0.035, bevelThickness: 0.035 }]} />
+        <meshStandardMaterial
+          color="#9dffd1"
+          emissive="#00ff88"
+          emissiveIntensity={2.6}
+          metalness={0.75}
+          roughness={0.12}
+        />
+      </mesh>
+
+      <mesh scale={1.12} position={[0, 0, -0.03]}>
+        <extrudeGeometry args={[shape, { depth: 0.04, bevelEnabled: true, bevelSize: 0.04, bevelThickness: 0.02 }]} />
+        <meshBasicMaterial color="#00ff88" transparent opacity={0.28} />
+      </mesh>
+
+      <pointLight position={[0, 0, 0.6]} intensity={5} color="#00ff88" distance={4} />
+    </group>
+  );
+}
+
 function Ring({
   position,
   rotation = [0, 0, 0],
