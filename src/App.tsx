@@ -251,6 +251,7 @@ function useActiveSection(): { activeSection: string; progress: number } {
 export default function App() {
   const { activeSection, progress } = useActiveSection();
   const [selectedField, setSelectedField] = useState(workFields[0]);
+  const [selectedProject, setSelectedProject] = useState(projects[0]);
   
   const activeFocus = useMemo<FocusKey>(() => {
     return sectionMeta.find((section) => section.id === activeSection)?.focus ?? "none";
