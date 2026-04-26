@@ -360,7 +360,7 @@ function SceneContents({ activeFocus, scrollProgress }: { activeFocus: FocusKey;
       <Ring position={[0.6, -0.1, -4.0]} rotation={[Math.PI / 2.8, 0, 0.2]} emphasis={emphasis.ring} />
       <Ring position={[1.6, 2.2, -7.2]} rotation={[0.9, 0.2, 0.8]} emphasis={0} />
 
-      <Board position={[-2.2, -2.2, -6]} rotation={[0.3, -0.35, -0.2]} emphasis={emphasis.board} />
+      <Board position={[-5.0, -0.65, -5.8]} rotation={[0.18, -0.55, -0.12]} emphasis={emphasis.board} />
       <Board position={[2.8, 2.4, -8]} rotation={[0.2, 0.6, 0.25]} emphasis={0} />
 
       <Text
