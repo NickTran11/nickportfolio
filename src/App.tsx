@@ -491,10 +491,9 @@ export default function App() {
 
         <section id="resume" className="screen-section page-section">
           <motion.div className="content-shell section-stack section-left-clean" {...fadeUp}>
-            <div className="section-heading">
-              <span className="section-kicker">Resume PDF</span>
-              <h2>Preview and download my resume.</h2>
-            </div>
+            <div className="section-heading center-heading">
+  <h2 className="resume-glow-title">RESUME</h2>
+</div>
 
             <div className="resume-grid">
               <div className="glass-card resume-copy">
