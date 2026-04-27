@@ -848,11 +848,39 @@ code {
   overflow-y: hidden;
   padding: 0.25rem 0.25rem 0.75rem;
   scroll-snap-type: x mandatory;
-  scrollbar-width: none;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(120,255,200,0.6) rgba(255,255,255,0.05);
 }
 
+/* ✨ Custom horizontal scrollbar */
 .projects-board::-webkit-scrollbar {
-  display: none;
+  height: 10px;
+}
+
+.projects-board::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 999px;
+  margin: 6px 0;
+}
+
+.projects-board::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    90deg,
+    rgba(48,255,154,0.9),
+    rgba(155,255,208,0.9)
+  );
+  border-radius: 999px;
+  box-shadow:
+    0 0 8px rgba(48,255,154,0.6),
+    0 0 18px rgba(48,255,154,0.25);
+}
+
+.projects-board::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(80,255,170,1),
+    rgba(200,255,230,1)
+  );
 }
 
 .project-square {
