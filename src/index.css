@@ -1378,6 +1378,37 @@ code {
   width: 100%;
   max-width: 260px;
 }
+
+  .contact-premium-layout {
+  grid-template-columns: 1fr;
+  min-height: auto;
+  gap: 1rem;
+}
+
+.contact-title-side {
+  padding-top: 0;
+  text-align: center;
+}
+
+.contact-glow-title {
+  font-size: 2.7rem;
+}
+
+.contact-action-orbit {
+  min-height: auto;
+  padding-bottom: 0;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-big-button {
+  width: 100%;
+  max-width: 260px;
+}
+
+.contact-premium-quote {
+  margin-bottom: 0;
+}
 }
 
 .clean-photo {
