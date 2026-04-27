@@ -508,52 +508,36 @@ export default function App() {
   </motion.div>
 </section>
 
-        <section id="contact" className="screen-section page-section">
-          <motion.div className="content-shell section-stack section-right-offset" {...fadeUp}>
-            <div className="section-heading">
-              <span className="section-kicker">Contact</span>
-              <h2>Let&apos;s build something sharp and memorable.</h2>
-            </div>
+<section id="contact" className="screen-section page-section">
+  <motion.div className="content-shell contact-premium-shell" {...fadeUp}>
+    <div className="contact-premium-layout">
+      <div className="contact-title-side">
+        <h2 className="contact-glow-title">CONTACT</h2>
+      </div>
 
-            <div className="contact-grid">
-              <div className="glass-card contact-copy">
-                <div className="contact-icons">
-                  <span className="icon-badge">
-                    <Mail size={18} />
-                  </span>
-                  <span className="icon-badge">
-                    <Brain size={18} />
-                  </span>
-                </div>
+      <div className="contact-action-orbit">
+        <a className="primary-button contact-big-button" href="mailto:nicktranbach@gmail.com">
+          <Mail size={20} /> Email Me
+        </a>
 
-                <p>
-                  If you&apos;re looking for someone who brings technical curiosity, design energy, and a strategy mindset,
-                  I&apos;d love to connect.
-                </p>
+        <a
+          className="secondary-button contact-big-button"
+          href="https://www.linkedin.com/in/bach-tran-8b8bbb325/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <Linkedin size={20} /> LinkedIn
+        </a>
+      </div>
 
-                <div className="contact-actions">
-                  <a className="primary-button" href="mailto:nicktranbach@gmail.com">
-                    <Mail size={18} /> Email Me
-                  </a>
-                  <a
-                    className="secondary-button"
-                    href="https://www.linkedin.com/in/bach-tran-8b8bbb325/"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <Linkedin size={18} /> LinkedIn
-                  </a>
-                </div>
-              </div>
-
-              <div className="glass-card final-quote">
-                <p>
-                  “Good positioning wins in football. Good positioning wins in chess. Good positioning also wins in technology.”
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        </section>
+      <div className="glass-card contact-premium-quote">
+        <p>
+          “In the world full of AI and robotics, my creativity and personality built different!”
+        </p>
+      </div>
+    </div>
+  </motion.div>
+</section>
       </main>
     </div>
   );
