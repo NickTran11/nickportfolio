@@ -489,7 +489,7 @@ export default function App() {
 </section>
 
         <section id="resume" className="screen-section page-section">
-          <motion.div className="content-shell section-stack section-left-clean" {...fadeUp}>
+          <motion.div className="content-shell section-stack resume-section-shell" {...fadeUp}>
             <div className="resume-vertical-title" aria-label="Resume">
   {"RESUME".split("").map((letter) => (
     <span key={letter}>{letter}</span>
