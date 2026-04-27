@@ -619,29 +619,30 @@ code {
 }
 
 .resume-section-shell {
-  width: min(1280px, calc(100% - 2rem));
+  width: min(1350px, calc(100% - 2rem));
   margin: 0 auto;
 }
 
 .resume-center-layout {
   width: 100%;
-  min-height: 72vh;
+  min-height: 78vh;
   display: grid;
-  grid-template-columns: 90px minmax(620px, 760px) 240px;
+  grid-template-columns: 120px minmax(620px, 760px) 260px;
   align-items: center;
   justify-content: center;
-  gap: 1.4rem;
+  gap: 1.6rem;
 }
 
 .resume-vertical-title {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.1rem;
-  font-size: clamp(2.1rem, 4vw, 4rem);
-  line-height: 0.9;
+  justify-content: center;
+  gap: 0.02rem;
+  font-size: clamp(2.4rem, 4.4vw, 4.4rem);
+  line-height: 0.88;
   font-weight: 900;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   color: #dfffee;
 
   background: linear-gradient(
@@ -658,13 +659,7 @@ code {
   background-clip: text;
   -webkit-text-fill-color: transparent;
 
-  text-shadow:
-    0 0 2px rgba(210, 255, 235, 0.95),
-    0 0 8px rgba(75, 255, 170, 0.2),
-    0 0 18px rgba(75, 255, 170, 0.14);
-
-  filter: drop-shadow(0 0 6px rgba(75, 255, 170, 0.16));
-
+  filter: drop-shadow(0 0 10px rgba(75, 255, 170, 0.28));
   animation:
     welcomeGlow 4s ease-in-out infinite,
     welcomeSweep 7s ease-in-out infinite alternate;
@@ -672,18 +667,25 @@ code {
 
 .resume-viewer-centered {
   width: 100%;
-  min-height: 34rem;
+  height: 36rem;
+  min-height: 36rem;
+}
+
+.resume-viewer-centered iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 36rem;
 }
 
 .resume-download-button {
-  width: 220px;
-  min-height: 4.2rem;
-  font-size: 1.08rem;
-  font-weight: 800;
+  width: 240px;
+  min-height: 4.8rem;
+  font-size: 1.15rem;
+  font-weight: 900;
   justify-self: start;
   box-shadow:
-    0 0 18px rgba(48, 255, 154, 0.34),
-    0 18px 45px rgba(48, 255, 154, 0.22);
+    0 0 22px rgba(48, 255, 154, 0.42),
+    0 20px 55px rgba(48, 255, 154, 0.26);
 }
 
 .section-heading h2 {
