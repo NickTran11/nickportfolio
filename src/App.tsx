@@ -495,25 +495,15 @@ export default function App() {
   <h2 className="resume-glow-title">RESUME</h2>
 </div>
 
-            <div className="resume-grid">
-              <div className="glass-card resume-copy">
-                <div className="icon-badge large">
-                  <FileText size={24} />
-                </div>
-                <h3>Drop your PDF into the public folder</h3>
-                <p>
-                  Put your actual file at <code>public/resume.pdf</code>. After that, the preview below and the
-                  download button will work automatically.
-                </p>
-                <a className="primary-button" href="/resume.pdf" target="_blank" rel="noreferrer">
-                  Download Resume
-                </a>
-              </div>
+            <div className="resume-center-layout">
+  <div className="glass-card resume-viewer resume-viewer-centered">
+    <iframe title="Nick Tran Resume" src="/resume.pdf#view=FitH" />
+  </div>
 
-              <div className="glass-card resume-viewer">
-                <iframe title="Nick Tran Resume" src="/resume.pdf#view=FitH" />
-              </div>
-            </div>
+  <a className="primary-button resume-download-button" href="/resume.pdf" target="_blank" rel="noreferrer">
+    Download Resume
+  </a>
+</div>
           </motion.div>
         </section>
 
