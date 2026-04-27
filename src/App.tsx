@@ -203,7 +203,16 @@ const projects = [
     tech: ["Wireshark", "Virtualization", "YARA", "DFIR", "Industrial Networking"],
     link: "#about",
     github: "https://github.com/NickTran11"
-  }
+  },
+{
+  title: "Personal Portfolio",
+  tag: "React + 3D Portfolio",
+  description:
+    "A personal portfolio website built with React, TypeScript, Framer Motion, and 3D visual elements to showcase my projects, skills, resume, and creative technical identity.",
+  tech: ["React", "TypeScript", "Framer Motion", "Three.js", "Portfolio Design"],
+  link: "https://nicktran11.github.io/nickportfolio/",
+  github: "https://github.com/NickTran11/nickportfolio"
+}
 ];
 
 const fadeUp = {
