@@ -618,13 +618,56 @@ code {
     welcomeSweep 7s ease-in-out infinite alternate;
 }
 
-.resume-center-layout {
-  width: min(760px, 100%);
+.resume-section-shell {
+  width: min(1280px, calc(100% - 2rem));
   margin: 0 auto;
+}
+
+.resume-center-layout {
+  width: 100%;
+  min-height: 72vh;
+  display: grid;
+  grid-template-columns: 90px minmax(620px, 760px) 240px;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
+}
+
+.resume-vertical-title {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 0.1rem;
+  font-size: clamp(2.1rem, 4vw, 4rem);
+  line-height: 0.9;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  color: #dfffee;
+
+  background: linear-gradient(
+    115deg,
+    #dfffee 0%,
+    #dfffee 38%,
+    #79ffbf 48%,
+    #dfffee 58%,
+    #dfffee 100%
+  );
+  background-size: 220% 100%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  text-shadow:
+    0 0 2px rgba(210, 255, 235, 0.95),
+    0 0 8px rgba(75, 255, 170, 0.2),
+    0 0 18px rgba(75, 255, 170, 0.14);
+
+  filter: drop-shadow(0 0 6px rgba(75, 255, 170, 0.16));
+
+  animation:
+    welcomeGlow 4s ease-in-out infinite,
+    welcomeSweep 7s ease-in-out infinite alternate;
 }
 
 .resume-viewer-centered {
@@ -633,7 +676,14 @@ code {
 }
 
 .resume-download-button {
-  margin-top: 0.3rem;
+  width: 220px;
+  min-height: 4.2rem;
+  font-size: 1.08rem;
+  font-weight: 800;
+  justify-self: start;
+  box-shadow:
+    0 0 18px rgba(48, 255, 154, 0.34),
+    0 18px 45px rgba(48, 255, 154, 0.22);
 }
 
 .section-heading h2 {
