@@ -489,24 +489,24 @@ export default function App() {
 </section>
 
         <section id="resume" className="screen-section page-section">
-          <motion.div className="content-shell section-stack resume-section-shell" {...fadeUp}>
-            <div className="resume-vertical-title" aria-label="Resume">
-  {"RESUME".split("").map((letter) => (
-    <span key={letter}>{letter}</span>
-  ))}
-</div>
+  <motion.div className="content-shell resume-section-shell" {...fadeUp}>
+    <div className="resume-center-layout">
+      <div className="resume-vertical-title" aria-label="Resume">
+        {"RESUME".split("").map((letter) => (
+          <span key={letter}>{letter}</span>
+        ))}
+      </div>
 
-            <div className="resume-center-layout">
-  <div className="glass-card resume-viewer resume-viewer-centered">
-  <iframe title="Nick Tran Resume" src="/resume.pdf#view=FitH" />
-</div>
+      <div className="glass-card resume-viewer resume-viewer-centered">
+        <iframe title="Nick Tran Resume" src="/resume.pdf#view=FitH" />
+      </div>
 
-<a className="primary-button resume-download-button" href="/resume.pdf" target="_blank" rel="noreferrer">
-  Download Resume
-</a>
-</div>
-          </motion.div>
-        </section>
+      <a className="primary-button resume-download-button" href="/resume.pdf" target="_blank" rel="noreferrer">
+        Download Resume
+      </a>
+    </div>
+  </motion.div>
+</section>
 
         <section id="contact" className="screen-section page-section">
           <motion.div className="content-shell section-stack section-right-offset" {...fadeUp}>
