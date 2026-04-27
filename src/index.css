@@ -857,6 +857,8 @@ code {
 
 .project-square {
   min-height: 140px;
+  min-width: 150px;
+  scroll-snap-align: start;
   border: 1px solid rgba(175, 255, 220, 0.16);
   border-radius: 22px;
   padding: 1rem;
