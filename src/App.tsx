@@ -6,7 +6,6 @@ import {
   Cloud,
   Code2,
   ExternalLink,
-  FileText,
   Github,
   Linkedin,
   Mail,
