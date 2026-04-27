@@ -688,6 +688,89 @@ code {
     0 20px 55px rgba(48, 255, 154, 0.26);
 }
 
+.contact-premium-shell {
+  width: min(1280px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.contact-premium-layout {
+  min-height: 76vh;
+  display: grid;
+  grid-template-columns: 330px 1fr 430px;
+  align-items: center;
+  gap: 1.8rem;
+}
+
+.contact-title-side {
+  align-self: start;
+  padding-top: 4rem;
+}
+
+.contact-glow-title {
+  margin: 0;
+  max-width: none;
+  font-size: clamp(2.8rem, 5.5vw, 5.4rem);
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  color: #dfffee;
+  text-transform: uppercase;
+
+  background:
+    linear-gradient(
+      115deg,
+      #dfffee 0%,
+      #dfffee 38%,
+      #79ffbf 48%,
+      #dfffee 58%,
+      #dfffee 100%
+    );
+  background-size: 220% 100%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  filter: drop-shadow(0 0 10px rgba(75, 255, 170, 0.22));
+
+  animation:
+    welcomeGlow 4s ease-in-out infinite,
+    welcomeSweep 7s ease-in-out infinite alternate;
+}
+
+.contact-action-orbit {
+  min-height: 22rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 1rem;
+  padding-bottom: 2.5rem;
+  pointer-events: auto;
+}
+
+.contact-big-button {
+  min-height: 4.3rem;
+  padding-inline: 1.6rem;
+  font-size: 1.08rem;
+  font-weight: 850;
+  box-shadow:
+    0 0 18px rgba(48, 255, 154, 0.22),
+    0 18px 42px rgba(0, 0, 0, 0.32);
+}
+
+.contact-premium-quote {
+  padding: 2rem;
+  align-self: end;
+  margin-bottom: 3rem;
+}
+
+.contact-premium-quote p {
+  margin: 0;
+  font-size: clamp(1.35rem, 2.2vw, 2rem);
+  line-height: 1.25;
+  letter-spacing: -0.04em;
+}
+
 .section-heading h2 {
   margin: 0;
   font-size: clamp(1.8rem, 3.2vw, 3rem);
