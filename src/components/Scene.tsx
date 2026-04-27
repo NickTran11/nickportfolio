@@ -563,7 +563,7 @@ function SceneContents({ activeFocus, scrollProgress }: { activeFocus: FocusKey;
       <Ring position={[1.6, 2.2, -7.2]} rotation={[0.9, 0.2, 0.8]} emphasis={0} />
 
       <Board position={[-2.2, -2.2, -6]} rotation={[0.3, -0.35, -0.2]} emphasis={emphasis.board} />
-      <LightningBolt position={[-7.8, -1, -2.9]} rotation={[0.12, -0.25, 0.08]} />
+      <LightningBolt position={[-7.8, -1, -3.3]} rotation={[0.12, -0.25, 0.08]} />
 
       <Text
         position={[0, -2.6, -3]}
